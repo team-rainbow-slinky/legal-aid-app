@@ -6,9 +6,9 @@ const app = express();
 
 app.use(morgan('dev'));
 app.use(express.json());
-app.use(express.static('../client/build'))
+app.use(express.static('../client/dist'))
 
-app.use('*', spa('../client/build/index.html'))
+app.use('*', spa('../client/dist/index.html'))
 
 app.use(errorHandler);
 
