@@ -30,7 +30,6 @@ beforeEach(() => {
   )
 });
 
-
 beforeEach(() => {
   return Org.findOne(org1)
     .then(org => {
@@ -38,7 +37,7 @@ beforeEach(() => {
         { ...org1User1, org: org},
         { ...org1User2, org: org}
       )
-    });
+    })
 });
 
 beforeEach(() => {
@@ -71,41 +70,41 @@ beforeEach(() => {
     });
 });
 
-// let org1User1Token;
-// beforeEach(() => {
-//   return request(app)
-//     .post('/api/users/login')
-//     .send(org1User1)
-//     .then(res => res.get('X-AUTH-TOKEN'))
-//     .then(headerToken => org1User1Token = headerToken);
-// });
+let org1User1Token;
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/login')
+    .send(org1User1)
+    .then(res => res.get('X-AUTH-TOKEN'))
+    .then(headerToken => org1User1Token = headerToken);
+});
 
-// let org1User2Token;
-// beforeEach(() => {
-//   return request(app)
-//     .post('/api/users/login')
-//     .send(org1User2)
-//     .then(res => res.get('X-AUTH-TOKEN'))
-//     .then(headerToken => org1User2Token = headerToken);
-// });
+let org1User2Token;
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/login')
+    .send(org1User2)
+    .then(res => res.get('X-AUTH-TOKEN'))
+    .then(headerToken => org1User2Token = headerToken);
+});
 
-// let org2User1Token;
-// beforeEach(() => {
-//   return request(app)
-//     .post('/api/users/login')
-//     .send(org2User1)
-//     .then(res => res.get('X-AUTH-TOKEN'))
-//     .then(headerToken => org2User1Token = headerToken);
-// });
+let org2User1Token;
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/login')
+    .send(org2User1)
+    .then(res => res.get('X-AUTH-TOKEN'))
+    .then(headerToken => org2User1Token = headerToken);
+});
 
-// let org2User2Token;
-// beforeEach(() => {
-//   return request(app)
-//     .post('/api/users/login')
-//     .send(org2User2)
-//     .then(res => res.get('X-AUTH-TOKEN'))
-//     .then(headerToken => org2User2Token = headerToken);
-// });
+let org2User2Token;
+beforeEach(() => {
+  return request(app)
+    .post('/api/users/login')
+    .send(org2User2)
+    .then(res => res.get('X-AUTH-TOKEN'))
+    .then(headerToken => org2User2Token = headerToken);
+});
 
 export const prepare = doc => JSON.parse(JSON.stringify(doc));
 export const prepareList = docs => docs.map(prepare);
@@ -120,9 +119,9 @@ export const setupTestGetters = Model => {
 export const [getOrg, getOrgs] = setupTestGetters(Org);
 export const [getBooking, getBookings] = setupTestGetters(Booking);
 export const [getUser, getUsers] = setupTestGetters(User);
-// export const getTokens = () => {
-//   org1User1: org1User1Token
-//   // org1User2: org1User2Token,
-//   // org2User1: org2User1Token,
-//   // org2User2: org2User2Token
-// };
+export const getTokens = () => ({
+  org1User1: org1User1Token,
+  org1User2: org1User2Token,
+  org2User1: org2User1Token,
+  org2User2: org2User2Token
+});
