@@ -10,22 +10,25 @@ const bookingSchema = new mongoose.Schema ({
     ref: 'Org',
     required: true
   },
-  alias: String,
+  preferredName: String,
   gender: String,
+  pronouns: String,
+  primaryOrgContact: String,
   contacts: String,
+  upcomingDates: String,
   notes: String,
-  mscoName: String,
-  mscoAge: Number,
-  mscoGender: String,
-  mscoRace: String,
-  mscoHeight: String,
-  mscoWeight: String,
-  mscoHair: String,
-  mscoEyes: String,
-  mscoArrestingAgency: String,
-  mscoBookingDate: String,  // or maybe date?
-  mscoAssignedFacility: String,
-  mscoProjectedReleaseDate: String
+  mcsoName: String,
+  mcsoAge: Number,
+  mcsoGender: String,
+  mcsoRace: String,
+  mcsoHeight: String,
+  mcsoWeight: String,
+  mcsoHair: String,
+  mcsoEyes: String,
+  mcsoArrestingAgency: String,
+  mcsoBookingDate: String,  // or maybe date?
+  mcsoAssignedFacility: String,
+  mcsoProjectedReleaseDate: String
 });
 
 export default mongoose.model('Booking', bookingSchema);
