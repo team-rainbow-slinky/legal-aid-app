@@ -1,0 +1,34 @@
+import mongoose from 'mongoose';
+
+const bookingSchema = new mongoose.Schema ({
+  swisId: {
+    type: String,
+    required: true
+  },
+  org: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'Org',
+    required: true
+  },
+  preferredName: String,
+  gender: String,
+  pronouns: String,
+  primaryOrgContact: String,
+  contacts: String,
+  upcomingDates: String,
+  notes: String,
+  mcsoName: String,
+  mcsoAge: Number,
+  mcsoGender: String,
+  mcsoRace: String,
+  mcsoHeight: String,
+  mcsoWeight: String,
+  mcsoHair: String,
+  mcsoEyes: String,
+  mcsoArrestingAgency: String,
+  mcsoBookingDate: String,  // or maybe date?
+  mcsoAssignedFacility: String,
+  mcsoProjectedReleaseDate: String
+});
+
+export default mongoose.model('Booking', bookingSchema);
