@@ -1,11 +1,16 @@
-import { getBookings } from "../services/bookingsApi";
+import { getBookings, getBooking } from '../services/bookingsApi';
 
-export const FETCH_BOOKINGS = 'FETCH_BOOKINGS'
+export const FETCH_BOOKINGS = 'FETCH_BOOKINGS';
 export const fetchBookings = () => ({
   type: FETCH_BOOKINGS,
   payload: getBookings()
 });
 
+export const FETCH_BOOKING = 'FETCH_BOOKING';
+export const fetchBooking = id => ({
+  type: FETCH_BOOKING,
+  payload: getBooking(id)
+});
 
 export const BOOKING_EDIT = 'BOOKING_EDIT';
 export const editBooking = ({

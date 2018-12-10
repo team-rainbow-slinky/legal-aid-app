@@ -1,4 +1,4 @@
-import { editBooking, BOOKING_EDIT, fetchBookings, FETCH_BOOKINGS } from './bookings';
+import { editBooking, BOOKING_EDIT, fetchBookings, FETCH_BOOKINGS, fetchBooking, FETCH_BOOKING } from './bookings';
 import { getBookings } from '../services/bookingsApi';
 
 const fakeBooking = {
@@ -27,13 +27,16 @@ const fakeBooking = {
 jest.mock('../services/bookingsApi.js');
 
 describe('bookings actions', () => {
-  describe('getBookings action', () => {
-    it('creates an action to get all bookings', () => {
-      const booking = fetchBookings();
-      expect(booking.type).toEqual(FETCH_BOOKINGS);
-    });
+
+  it('creates an action to get all bookings', () => {
+    const bookings = fetchBookings();
+    expect(bookings.type).toEqual(FETCH_BOOKINGS);
   });
 
+  it('creates an action to get one booking', () => {
+    const booking = fetchBooking();
+    expect(booking.type).toEqual(FETCH_BOOKING);
+  });
 
   it('creates an action to update a booking', () => {
     const booking = editBooking(fakeBooking);

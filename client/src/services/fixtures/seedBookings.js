@@ -1,5 +1,6 @@
 export const seedBookings =  [
   {
+    _id: '1',
     swisId: '12345',
     preferredName: 'Boomer Smith',
     gender: 'Non-binary',
@@ -22,6 +23,7 @@ export const seedBookings =  [
     mcsoProjectedReleaseDate: 'Unknown'
   },
   {
+    _id: '2',
     swisId: '67890',
     preferredName: 'Slice McGee',
     gender: 'Non-binary',
@@ -44,6 +46,7 @@ export const seedBookings =  [
     mcsoProjectedReleaseDate: 'Unknown'
   },
   {
+    _id: '3',
     swisId: '45316',
     preferredName: 'Alice People',
     gender: 'Female',
