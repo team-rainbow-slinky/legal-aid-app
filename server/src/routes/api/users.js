@@ -5,8 +5,8 @@ import requireAuth from '../../middleware/requireAuth';
 
 export default Router()
   .post('/signup', (req, res, next) => {
-    const { email, password } = req.body;
-    User.create({ email, password })
+    const { email, password, org } = req.body;
+    User.create({ email, password, org })
       .then(user => {
         res.setHeader('X-AUTH-TOKEN', user.authToken());
         res.json(user)
