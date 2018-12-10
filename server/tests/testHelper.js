@@ -17,6 +17,10 @@ beforeEach(() => {
   return mongoose.connection.dropDatabase();
 });
 
+afterAll(() => {
+  return mongoose.disconnect();
+})
+
 beforeEach(() => {
   return Org.create(
     org1,
