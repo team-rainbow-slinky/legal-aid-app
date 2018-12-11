@@ -1,6 +1,14 @@
 import reducer from './bookings';
-import { BOOKING_EDIT, FETCH_BOOKINGS, FETCH_BOOKING } from '../actions/bookings';
+import {
+  BOOKING_EDIT,
+  FETCH_BOOKINGS,
+  FETCH_BOOKING,
+  BOOKING_LOADING,
+  BOOKING_LOADED
+} from '../actions/bookings';
 import { seedBookings } from '../services/fixtures/seedBookings';
+
+jest.mock('../services/bookingsApi.js');
 
 describe('bookings reducer', () => {
   const state =  {
@@ -29,7 +37,17 @@ describe('bookings reducer', () => {
     expect(newState).toEqual({ ...state, detail: { hi: 'hi' } });
   });
 
-  it('handles a BOOKING_EDIT action', () => {
-
+  it('handles a BOOKING_LOADING action', () => {
+    const newState = reducer(state, { type: BOOKING_LOADING });
+    expect(newState.loading).toEqual(true);
   });
+
+  it('handles a BOOKING_LOADED action', () => {
+    const newState = reducer(state, { type: BOOKING_LOADED });
+    expect(newState.loading).toEqual(false);
+  });
+
+  // it('handles a BOOKING_EDIT action', () => {
+
+  // });
 });
