@@ -7,8 +7,6 @@ export default (req, res, next) => {
   const token = authHeader.replace(/bearer /i, '');
   User.findByToken(token)
     .then(user => {
-      console.log('user.org', user.org);
-      console.log('orgId', orgId)
       if(user.org === orgId) {
         next();
       } else {
