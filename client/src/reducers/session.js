@@ -6,6 +6,8 @@ import {
   SESSION_TOKEN
 } from '../actions/session';
 
+//GET THE ORG IN HERE TO PERSIST WITH THE USER THROUGH THEIR SESSION?
+
 const initialState = {
   token: '',
   user: null,
@@ -21,7 +23,7 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, loading: true };
     case SESSION_LOADED:
       return { ...state, loading: false };
-    case SESSION_ERROR:
+    case SESSION_ERROR: 
       return { ...state, user: null, error: payload };
     case SESSION_TOKEN:
       return { ...state, token: payload };

@@ -1,5 +1,9 @@
 import { getBookings, getBooking } from '../services/bookingsApi';
 
+export const BOOKING_LOADING = 'BOOKING_LOADING';
+export const BOOKING_LOADED = 'BOOKING_LOADED';
+export const BOOKING_ERROR = 'BOOKING_ERROR';
+
 export const FETCH_BOOKINGS = 'FETCH_BOOKINGS';
 export const fetchBookings = () => ({
   type: FETCH_BOOKINGS,
