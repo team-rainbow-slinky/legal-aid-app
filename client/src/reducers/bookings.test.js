@@ -18,7 +18,7 @@ describe('bookings reducer', () => {
       type: FETCH_BOOKINGS,
       payload: [{ hi: 'hi' }]
     });
-    expect(newState).toEqual({ ...state, list: [{ hi: 'hi' }] } );
+    expect(newState).toEqual({ ...state, list: [{ hi: 'hi' }] });
   });
 
   it('handles a FETCH_BOOKING action', () => {
