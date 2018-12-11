@@ -2,7 +2,7 @@ export const org1 = { name: 'National Lawyers Guild' };
 export const org1User1 = { email: 'user1@gmail.com', password: 'password' }
 export const org1User2 = { email: 'user2@gmail.com', password: 'password' }
 export const org1Booking1 = {
-  swisId: '12345',
+  swisId: '87809',
   preferredName: 'Boomer Smith',
   gender: 'Non-binary',
   pronouns: 'he/him',
@@ -24,7 +24,7 @@ export const org1Booking1 = {
   mcsoProjectedReleaseDate: 'Unknown'
 };
 export const org1Booking2 = {
-  swisId: '23456',
+  swisId: '814233',
   preferredName: 'Cameron Post',
   gender: 'Non-binary',
   pronouns: 'they/them',
