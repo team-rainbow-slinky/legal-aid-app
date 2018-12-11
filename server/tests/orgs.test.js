@@ -43,7 +43,7 @@ describe('org tests', () => {
       })
   });
 
-  it('gets latest bookings from msco that aren\'t already a booking', async () => {
+  it('gets latest bookings from mcso that aren\'t already a booking', async () => {
     const tokens = await getTokens();
     const org = await getOrg({ name: org1.name });
     return request(app)

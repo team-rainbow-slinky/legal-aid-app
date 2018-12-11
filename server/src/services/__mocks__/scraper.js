@@ -1,4 +1,4 @@
-const mockMscoRecords = [
+const mockMcsoRecords = [
   { swisId: '87809',
   mcsoName: 'Blake, Terry Bernard',
   mcsoAge: '46',
@@ -93,5 +93,5 @@ const mockMscoRecords = [
 ];
 
 export const getMcsoRecords = () => {
-  return Promise.resolve(mockMscoRecords);
+  return Promise.resolve(mockMcsoRecords);
 }

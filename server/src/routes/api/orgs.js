@@ -36,7 +36,7 @@ export default Router()
 
     Promise.all(promises)
       .then(([swisIds, mcsoBookings]) => {
-        return mcsoBookings.filter(msco => !swisIds.includes(msco.swisId))
+        return mcsoBookings.filter(mcso => !swisIds.includes(mcso.swisId))
       })
       .then(filteredResults => res.json(filteredResults))
       .catch(next);
