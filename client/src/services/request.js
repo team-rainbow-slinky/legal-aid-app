@@ -1,13 +1,21 @@
 import store from '../store';
 import { updateSessionToken } from '../actions/session';
+import { getSessionToken } from '../selectors/session';
 
 let token = window.localStorage.getItem('token'); //may or may not be okay 
 
 const setToken = newToken => {
   token = newToken;
-  store.dispatch(updateSessionToken(newToken));
   window.localStorage.setItem('token', newToken);
+  store.dispatch(updateSessionToken(newToken));
 };
+
+store.subscribe(() => {
+  const storeToken = getSessionToken(store.getState());
+  if(storeToken !== token) {
+    token = window.localStorage.getItem('token');
+  }
+});
 
 const request = (url, method, body) => {
   return fetch(url, {
