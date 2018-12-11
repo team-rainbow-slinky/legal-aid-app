@@ -3,12 +3,12 @@ import { Route, Link } from 'react-router-dom';
 import OrgHome from '../components/orgHome/OrgHome';
 import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
-import BookingsContainer from '../containers/BookingsContainer';
+import OrgHomeContainer from '../containers/OrgHomeContainer';
 
 export const ROUTES = {
   ORGHOME: {
     path: '/',
-    Component: withSession(OrgHome),
+    Component: withSession(OrgHomeContainer),
     linkTo: () => '/' // will need orgId added
   },
   LOGIN: {
@@ -16,11 +16,11 @@ export const ROUTES = {
     Component: Login,
     linkTo: () => '/login'
   },
-  BOOKINGS: {
-    path: '/bookings/:orgId',
-    Component: BookingsContainer,
-    linkTo: orgId => `/bookings/${orgId}`
-  }
+  // BOOKING: {
+  //   path: '/bookings/:id',
+  //   Component: withSession(),
+  //   linkTo: id => `/bookings/${id}`
+  // }
 };
 
 export const rootLinks = () => {
