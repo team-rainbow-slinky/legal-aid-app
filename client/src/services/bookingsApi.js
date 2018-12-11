@@ -1,4 +1,3 @@
-import { get } from './request';
 import { seedBookings } from '../services/fixtures/seedBookings';
 
 export const getBookings = () => {

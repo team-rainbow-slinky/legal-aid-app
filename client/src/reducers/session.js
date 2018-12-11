@@ -3,7 +3,8 @@ import {
   SESSION_LOADING,
   SESSION_LOADED,
   SESSION_ERROR,
-  SESSION_TOKEN
+  SESSION_TOKEN,
+  SESSION_END
 } from '../actions/session';
 
 const initialState = {
@@ -25,6 +26,9 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, user: null, error: payload };
     case SESSION_TOKEN:
       return { ...state, token: payload };
+    case SESSION_END:
+      window.localStorage.removeItem('token');  
+      return { ...initialState }; 
     default:
       return state;
   }

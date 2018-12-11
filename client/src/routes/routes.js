@@ -8,7 +8,7 @@ export const ROUTES = {
   ORGHOME: {
     path: '/',
     Component: withSession(OrgHome),
-    linkTo: () => '/' // will need orgId added
+    linkTo: () => '/'
   },
   LOGIN: {
     path: '/login',
