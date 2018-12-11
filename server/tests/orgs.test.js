@@ -3,6 +3,8 @@ import app from '../src/routes/app';
 import { org1 } from './testData';
 import { getTokens, getOrg, getBookings } from './testHelper';
 
+jest.mock('../src/services/scraper.js');
+
 describe('org tests', () => {
 
   it('gets an org by id if you are an authorized user of that org', async () => {
@@ -38,6 +40,17 @@ describe('org tests', () => {
         expect(res.body.length).toEqual(2);
         expect(res.body).toContainEqual(bookings[0]);
         expect(res.body).toContainEqual(bookings[1]);
+      })
+  });
+
+  it('gets latest bookings from msco that aren\'t already a booking', async () => {
+    const tokens = await getTokens();
+    const org = await getOrg({ name: org1.name });
+    return request(app)
+      .get(`/api/orgs/${org._id}/mcso`)
+      .set('Authorization', `Bearer ${tokens.org1User1}`)
+      .then(res => {
+        expect(res.body.length).toEqual(5);
       })
   });
 
