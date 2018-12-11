@@ -1,7 +1,7 @@
-import { get } from './request';
 import { seedBookings } from '../services/fixtures/seedBookings';
 import store from '../store';
 import { getOrgId } from '../selectors/session';
+import { get } from './request';
 
 export const getBookings = () => {
   const orgId = getOrgId(store.getState());

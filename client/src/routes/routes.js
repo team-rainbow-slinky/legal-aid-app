@@ -3,12 +3,11 @@ import { Route, Link } from 'react-router-dom';
 import OrgHome from '../components/orgHome/OrgHome';
 import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
-import OrgHomeContainer from '../containers/OrgHomeContainer';
 
 export const ROUTES = {
   ORGHOME: {
     path: '/',
-    Component: withSession(OrgHomeContainer),
+    Component: withSession(OrgHome),
     linkTo: () => '/' // will need orgId added
   },
   LOGIN: {
