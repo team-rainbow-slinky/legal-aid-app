@@ -4,7 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "jest",
+    "test": "npm run jest",
+    "jest": "jest --verbose --runInBand",
     "test:watch": "npm run test -- --watch",
     "build": "babel src -d lib -s true",
     "prestart": "npm run build",
