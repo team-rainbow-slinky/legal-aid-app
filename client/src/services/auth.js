@@ -5,5 +5,5 @@ export const login = ({ email, password }) => {
 };
 
 export const verifySession = () => {
-  return get('/api/auth/verify');
+  return get('/api/users/verify');
 };

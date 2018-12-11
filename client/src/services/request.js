@@ -1,7 +1,7 @@
 import store from '../store';
 import { updateSessionToken } from '../actions/session';
 
-let token = window.localStorage.getItem('token');
+let token = window.localStorage.getItem('token'); //may or may not be okay 
 
 const setToken = newToken => {
   token = newToken;
