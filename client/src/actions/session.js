@@ -7,6 +7,7 @@ export const SESSION_CREATE = 'SESSION_CREATE';
 export const SESSION_LOADING = 'SESSION_LOADING';
 export const SESSION_LOADED = 'SESSION_LOADED';
 export const SESSION_ERROR = 'SESSION_ERROR';
+export const SESSION_END = 'SESSION_END';
 
 export const login = ({ email, password }) => ({
   type: SESSION_CREATE,
@@ -29,5 +30,10 @@ export const updateSessionToken = token => ({
   type: SESSION_TOKEN,
   payload: token
 });
+
+export const logout = () => ({
+  type: SESSION_END
+});
+
 
 
