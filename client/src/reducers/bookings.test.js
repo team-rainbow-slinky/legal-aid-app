@@ -4,7 +4,8 @@ import {
   FETCH_BOOKINGS,
   FETCH_BOOKING,
   BOOKING_LOADING,
-  BOOKING_LOADED
+  BOOKING_LOADED,
+  BOOKING_ERROR
 } from '../actions/bookings';
 import { seedBookings } from '../services/fixtures/seedBookings';
 
@@ -45,6 +46,11 @@ describe('bookings reducer', () => {
   it('handles a BOOKING_LOADED action', () => {
     const newState = reducer(state, { type: BOOKING_LOADED });
     expect(newState.loading).toEqual(false);
+  });
+
+  it('handles a BOOKING_ERROR action', () => {
+    const newState = reducer(state, { type: BOOKING_ERROR, payload: 'error' });
+    expect(newState.error).toEqual('error');
   });
 
   // it('handles a BOOKING_EDIT action', () => {
