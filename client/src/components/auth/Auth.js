@@ -6,7 +6,7 @@ import { ROUTES } from '../../routes/routes';
 export class AuthForm extends PureComponent {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    sessions: PropTypes.objectOf
+    sessions: PropTypes.object
   };
 
   state = {
@@ -20,7 +20,7 @@ export class AuthForm extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-
+    console.log(this.state);
     const { email, password } = this.state;
     this.props.onSubmit({ email, password });
   };
@@ -34,8 +34,8 @@ export class AuthForm extends PureComponent {
       <>
         <h1>Sign In</h1>
         <form onSubmit={this.handleSubmit}>
-          <input type="email" value={email} onChange={this.handleChange} />
-          <input type="password" name={password} onChange={this.handleChange} />
+          <input type="email" name="email" value={email} onChange={this.handleChange} />
+          <input type="password" name="password" value={password} onChange={this.handleChange} />
           <button>Sign In</button>
         </form>
       </>

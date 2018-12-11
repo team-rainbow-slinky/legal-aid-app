@@ -3,7 +3,7 @@ import { connect } from './utils/connect';
 import app from './routes/app';
 
 config();
-//connect();
+connect();
 
 const PORT = process.env.PORT || 7890
 

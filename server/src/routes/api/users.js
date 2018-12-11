@@ -16,6 +16,7 @@ export default Router()
 
   .post('/login', (req, res, next) => {
     const { email, password } = req.body;
+    console.log('req.body', req.body);
     User.findOne({ email })
       .then(user => {
         if (!user || !user.compare(password)) return next(new HttpError({ code: 401, message: 'Invalid email/password' }));
