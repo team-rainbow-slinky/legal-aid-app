@@ -7,6 +7,8 @@ import {
   SESSION_END
 } from '../actions/session';
 
+//GET THE ORG IN HERE TO PERSIST WITH THE USER THROUGH THEIR SESSION?
+
 const initialState = {
   token: '',
   user: null,
