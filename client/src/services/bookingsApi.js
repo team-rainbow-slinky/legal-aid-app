@@ -1,8 +1,11 @@
 import { seedBookings } from '../services/fixtures/seedBookings';
+import store from '../store';
+import { getOrgId } from '../selectors/session';
+import { get } from './request';
 
 export const getBookings = () => {
-  // return get('/api/bookings');
-  return Promise.resolve(seedBookings);
+  const orgId = getOrgId(store.getState());
+  return get(`/api/orgs/${orgId}/bookings`);
 };
 
 export const getBooking = id => {
