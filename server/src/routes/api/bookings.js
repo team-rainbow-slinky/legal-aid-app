@@ -5,10 +5,11 @@ import requireAuth from '../../middleware/requireAuth';
 import confirmOrg from '../../middleware/confirmOrg';
 
 export default Router()
-  .get('/:id', requireAuth, confirmOrg, (req, res, next) => {
-    const { id } = req.params;
-    Org.findById(id)
+  .get('/:bookingId', requireAuth, (req, res, next) => {
+    const { bookingId } = req.params;
+    const query = { _id: bookingId, org: req.user.org };
+    Booking.findOne(query)
     .lean()
-    .then(org => res.json(org))
+    .then(booking => res.json(booking))
     .catch(next);
-  });
+  })
