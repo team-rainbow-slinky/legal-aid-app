@@ -53,7 +53,8 @@ h1 {
     }
 
     .checkbox {
-        margin-left: 40px;
+        width: 5%;
+        margin-left: 5px;
     }
 
     button {

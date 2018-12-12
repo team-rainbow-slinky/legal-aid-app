@@ -8,6 +8,7 @@ class StateRecord extends PureComponent {
   static propTypes = {
     mcsoName: PropTypes.string.isRequired,
     mcsoBookingDate: PropTypes.string.isRequired,
+    swisId: PropTypes.string.isRequired,
     onSelection: PropTypes.func.isRequired
   };
 
@@ -17,7 +18,7 @@ class StateRecord extends PureComponent {
 
   handleSelection = () => {
     this.setState({ selected: !this.state.selected }, () => {
-      this.props.onSelection(this.state.selected);
+      this.props.onSelection({ selected: this.state.selected, swisId: this.props.swisId });
     });
   };
 
@@ -25,7 +26,7 @@ class StateRecord extends PureComponent {
     return (
       <>
         <p>
-          <input type="checkbox" value={this.state.selected} onChange={this.handleSelection}/>
+          <input type="checkbox" className={styles.checkbox} value={this.state.selected} onChange={this.handleSelection}/>
           <span>{this.props.mcsoName}</span>
           <span>{this.props.mcsoBookingDate}</span>
         </p>
@@ -75,6 +76,31 @@ class SearchMCSOForm extends PureComponent {
 }
 
 export class SearchMCSO extends PureComponent {
+  state = {
+    recordsToAdd: []
+  };
+
+  onSelection = selection => {
+    const { selected, swisId } = selection;
+    
+    if(selected) {
+      const recordsToAdd = [...this.state.recordsToAdd];
+      if(!recordsToAdd.includes(swisId)) recordsToAdd.push(swisId);
+      this.setState({ recordsToAdd });
+    }
+    else {
+      const recordsToAdd = this.state.recordsToAdd.filter(id => {
+        return id !== swisId;
+      });
+      this.setState({ recordsToAdd });
+    }
+  };
+
+  handleSubmit = (event) => {
+    event.preventDefault();
+    console.log('recordsToAdd', this.state);
+  };
+
   render() {
     console.log('this.props', this.props);
     return (
@@ -83,13 +109,16 @@ export class SearchMCSO extends PureComponent {
         <h1>Search MCSO Records</h1>
         <SearchMCSOForm fetch={this.props.fetch} />
         <h1>Results</h1>
-        <StateRecords list={ this.props.list }/>
+        <form onSubmit={this.handleSubmit} className={styles.form}>
+          <StateRecords list={ this.props.list } onSelection={ this.onSelection } />
+          <button type="submit">Add</button>
+        </form>
       </>
     );
   }
 }
 
-
+//when post filter redux store, 
 //components presentational, containers data
 //should it be on change?
 
