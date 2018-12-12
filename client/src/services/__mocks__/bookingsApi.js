@@ -9,3 +9,7 @@ export const getBookings = () => {
 export const getBooking = id => {
   return Promise.resolve(bookings.find(booking => booking._id === id));
 };
+
+export const updateBooking = booking => {
+  return Promise.resolve(booking);
+};

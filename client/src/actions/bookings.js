@@ -1,4 +1,5 @@
-import { getBookings, getBooking } from '../services/bookingsApi';
+import { getBookings, getBooking, updateBooking } from '../services/bookingsApi';
+
 
 export const BOOKING_LOADING = 'BOOKING_LOADING';
 export const BOOKING_LOADED = 'BOOKING_LOADED';
@@ -21,51 +22,7 @@ export const fetchBooking = id => ({
 });
 
 export const BOOKING_EDIT = 'BOOKING_EDIT';
-export const editBooking = ({
-  swisId,
-  preferredName,
-  gender,
-  pronouns,
-  primaryOrgContact,
-  contacts,
-  upcomingDates,
-  notes,
-  mcsoName,
-  mcsoAge,
-  mcsoGender,
-  mcsoRace,
-  mcsoHeight,
-  mcsoWeight,
-  mcsoHair,
-  mcsoEyes,
-  mcsoArrestingAgency,
-  mcsoBookingDate,
-  mcsoAssignedFacility,
-  mcsoProjectedReleaseDate
-}) => ({
+export const editBooking = booking => ({
   type: BOOKING_EDIT,
-  payload: {
-    swisId,
-    preferredName,
-    gender,
-    pronouns,
-    primaryOrgContact,
-    contacts,
-    upcomingDates,
-    notes,
-    mcsoName,
-    mcsoAge,
-    mcsoGender,
-    mcsoRace,
-    mcsoHeight,
-    mcsoWeight,
-    mcsoHair,
-    mcsoEyes,
-    mcsoArrestingAgency,
-    mcsoBookingDate,
-    mcsoAssignedFacility,
-    mcsoProjectedReleaseDate
-  }
+  payload: updateBooking(booking)
 });
-
-
