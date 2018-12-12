@@ -57,7 +57,7 @@ h1 {
         margin-left: 5px;
     }
 
-    button {
+    & > button {
         position: relative;
         display: block;
         padding: 19px 39px 18px 39px;

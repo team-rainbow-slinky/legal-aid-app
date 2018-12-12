@@ -3,6 +3,9 @@ import Header from '../../containers/header/Header';
 import PropTypes from 'prop-types';
 import { withList } from '../withList';
 import styles from '../app/App.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import searchStyles from './SearchMCSO.css';
 
 class StateRecord extends PureComponent {
   static propTypes = {
@@ -48,10 +51,18 @@ class SearchMCSOForm extends PureComponent {
     this.setState({ [target.name]: target.value });
   };
 
+  changeStart = start => {
+    this.setState({ start: start.toISOString() });
+  };
+
+  changeEnd = end => {
+    this.setState({ end: end.toISOString() });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
     this.props.fetch(this.state);
-    console.log(this.state);
+    console.log('this.state', this.state);
   };
 
   render() {
@@ -63,11 +74,33 @@ class SearchMCSOForm extends PureComponent {
           <label>Name contains:</label>
           <input name="name" type="text" value={name} onChange={this.handleChange}/>
         </p>
-        <p>
+        <div>
           <label>Date and Time Range:</label>
-          <input name="start" type="date" value={start} onChange={this.handleChange}/>
-          <input name="end" type="date" value={end} onChange={this.handleChange}/>
-        </p>
+          <DatePicker
+            selected={start}
+            selectsStart
+            startDate={start}
+            endDate={end}
+            onChange={this.changeStart}
+            showTimeSelect
+            // minDate={subDays(new Date(), 7)}
+            maxDate={new Date()}
+            placeholderText="Select a date range START within the last 7 days"
+            dateFormat="MMMM d, yyyy h:mm aa"
+          />
+
+          <DatePicker
+            selected={end}
+            selectsEnd
+            startDate={start}
+            endDate={end}
+            onChange={this.changeEnd}
+            showTimeSelect
+            maxDate={new Date()}
+            dateFormat="MMMM d, yyyy h:mm aa"
+            placeholderText="Select a date range END within the last 7 days"
+          />
+        </div>
         <button type="submit">Search</button>
       </form>
       </>

@@ -6,6 +6,7 @@ import qs from 'querystring';
 export const getStateRecords = (query) => {
   const orgId = getOrgId(store.getState());
   const queryString = qs.stringify(query);
+  console.log('query:::', queryString);
   return get(`/api/orgs/${orgId}/mcso?${queryString}`);
 };
 
