@@ -5,12 +5,14 @@ import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
 import BookingDetail from '../components/bookings/BookingDetail';
 import BookingDetailContainer from '../containers/BookingDetailContainer';
+import SearchMCSO from '../containers/SearchMCSO';
+
 
 export const ROUTES = {
   ORGHOME: {
     path: '/',
     Component: withSession(OrgHome),
-    linkTo: () => '/' // will need orgId added
+    linkTo: () => '/'
   },
   LOGIN: {
     path: '/login',
@@ -21,6 +23,11 @@ export const ROUTES = {
     path: '/bookings/:id',
     Component: withSession(BookingDetailContainer),
     linkTo: id => `/bookings/${id}`
+  },
+  SEARCHMCSO: {
+    path: '/search_mcso',
+    Component: withSession(SearchMCSO),
+    linkTo: () => '/search_mcso'
   }
 };
 

@@ -1,0 +1,80 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Cabin', sans-serif;
+}
+
+h1 {
+  text-align: center;
+  margin: 5% auto;
+  font-family: 'Noto Serif TC', serif;
+}
+
+.headText {
+  font-size: 6vh;
+}
+
+.form {
+  grid-row-start: 2;
+  max-width: 500px;
+	background: #F8F8F8;
+	margin: 4em auto 5em auto;
+	padding: 20px;
+	border-radius: 8px;
+    label {
+      display: block;
+	    margin-bottom: 5px;
+    }
+    input {
+        border-radius: 4px;
+        width: 100%;
+        height: 35px;
+        border: 1px solid #ccc;
+        margin-bottom: 15px;
+    }
+    textarea {
+        width: 100%; 
+        padding: 12px;  
+        border: 1px solid #ccc; 
+        border-radius: 4px; 
+        box-sizing: border-box; 
+        margin-top: 6px; 
+        margin-bottom: 16px; 
+        resize: vertical;
+    }
+
+    textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+        border-color: #99BE7F;
+        box-shadow: 0 1px 1px #d9ffb3 inset, 0 0 8px #d9ffb3;
+        outline: 0 none;
+    }
+
+    .checkbox {
+        width: 5%;
+        margin-left: 5px;
+    }
+
+    button {
+        position: relative;
+        display: block;
+        padding: 19px 39px 18px 39px;
+        color: black;
+        margin: 0 auto;
+        background: #d9ffb3;;
+        font-size: 18px;
+        text-align: center;
+        font-style: normal;
+        width: 100%;
+        border: 1px solid #d9ffb3;;
+        border-width: 1px 1px 3px;
+        margin-bottom: 10px;
+        transition: border .4s ease-out;
+        border: 5px solid transparent;
+        &:hover {
+            border: 5px solid #006600;
+        }
+    }
+}

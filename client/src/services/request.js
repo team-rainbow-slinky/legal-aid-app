@@ -26,10 +26,9 @@ const request = (url, method, body) => {
     },
     body: JSON.stringify(body)
   })
-    .then(res => [res.ok, res.headers, res.json()])
+    .then(res => Promise.all([res.ok, res.headers, res.json()]))
     .then(([ok, headers, json]) => {
       if(!ok) {
-        window.alert('Invalid username or password');
         throw json;
       }
       return [headers, json];
