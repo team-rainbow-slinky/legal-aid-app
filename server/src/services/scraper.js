@@ -4,6 +4,10 @@ const { parse } = require('node-html-parser');
 export const getMcsoRecords = () => {
 
   return request.post('http://www.mcso.us/PAID/Home/SearchResults')
+  .timeout({
+    response: 30000,  // Wait 30 seconds for the server to start sending,
+    deadline: 60000, // but allow 1 minute for the file to finish loading.
+  })
   .type('form')
   .send(
     { FirstName: '',
