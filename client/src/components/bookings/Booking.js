@@ -4,6 +4,9 @@ import { ROUTES } from '../../routes/routes';
 
 export default function Booking({ _id, swisId, preferredName }) {
   return (
+    //turn these bad boys into links to each booking's detail
+    //does this need to dispatch an action?
+    
     <>
       <h2>{swisId}</h2>
       <p>{preferredName}</p>
