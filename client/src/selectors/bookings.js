@@ -2,6 +2,6 @@ export const getBookings = state => {
   return state.bookings.list;
 };
 
-export const getBooking = state => {
-  return state.bookings.detail;
+export const getBooking = (state, id) => {
+  return state.bookings.list.find(booking => booking._id === id);
 };
