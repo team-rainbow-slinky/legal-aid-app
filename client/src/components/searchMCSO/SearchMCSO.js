@@ -38,7 +38,7 @@ const StateRecords = withList(StateRecord, { spread: true });
 
 class SearchMCSOForm extends PureComponent {
   state = {
-    mcsoName: '',
+    name: '',
     start: '',
     end: ''
   };
@@ -49,19 +49,18 @@ class SearchMCSOForm extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    // this.props.fetchSearchResults(this.state);
+    this.props.fetch(this.state);
     console.log(this.state);
   };
 
   render() {
-    const { mcsoName, start, end } = this.state;
-
+    const { name, start, end } = this.state;
     return (
       <>
       <form onSubmit={this.handleSubmit} className={styles.form}>
         <p>
           <label>Name contains:</label>
-          <input name="mcsoName" type="text" value={mcsoName} onChange={this.handleChange}/>
+          <input name="name" type="text" value={name} onChange={this.handleChange}/>
         </p>
         <p>
           <label>Date and Time Range:</label>
@@ -75,14 +74,14 @@ class SearchMCSOForm extends PureComponent {
   }
 }
 
-export default class SearchMCSO extends PureComponent {
+export class SearchMCSO extends PureComponent {
   render() {
     console.log('this.props', this.props);
     return (
       <>
         <Header />
         <h1>Search MCSO Records</h1>
-        <SearchMCSOForm />
+        <SearchMCSOForm fetch={this.props.fetch} />
         <h1>Results</h1>
         <StateRecords list={ this.props.list }/>
       </>
