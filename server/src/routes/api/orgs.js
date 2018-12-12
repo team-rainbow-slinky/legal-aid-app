@@ -30,11 +30,13 @@ export default Router()
     const query = { org: orgId };
     const { name, start, end } = req.query;
 
-    // start = '12/10/2018 07:14 PM';
-    // const queryName = name ? name.toUpperCase() : name;
-    // const queryStart = start ? moment(start) : start;
-    // const queryEnd = end ? moment(end) : end;
-    // console.log('qName', queryName, 'qStart', queryStart, 'qEnd', queryEnd);
+    let queryName;
+    let queryStart;
+    let queryEnd;
+    if(name) queryName = name.toUpperCase();
+    if(start) queryStart = moment(start, 'MM/DD/YYYY hh:mm A', true);
+    if(end) queryEnd = moment(end, 'MM/DD/YYYY hh:mm A', true);
+
 
     const promises = [
       Booking.find(query)
@@ -46,7 +48,8 @@ export default Router()
       .then(([swisIds, mcsoBookings]) => {
         return mcsoBookings.filter(mcso => {
           return !swisIds.includes(mcso.swisId)
-          && includesName(name, mcso.mcsoName)
+          && includesName(queryName, mcso.mcsoName)
+          && isInTimeFrame(queryStart, queryEnd, mcso.mcsoBookingDate)
         })
       })
       .then(filteredResults => res.json(filteredResults))
@@ -55,11 +58,16 @@ export default Router()
 
   function includesName(name, mcso) {
     if(!name) return true;
-    name = name.toUpperCase();
     mcso = mcso.toUpperCase();
     return mcso.includes(name);
   }
 
-  function isInTimeFrame(start, end) {
-
+  function isInTimeFrame(startDate, endDate, mcso) {
+    if(!startDate || !endDate) return true;
+    const mscoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true);
+    console.log('mscoDate', mscoDate, 'startDate', startDate, 'endDate', endDate);
+    console.log('boolean', true);
+    console.log('boolean2', mcsoDate.isBefore(endDate));
+    if(mcsoDate.isAfter(startDate) && mcsoDate.isBefore(endDate)) return true;
+    return false;
   }
