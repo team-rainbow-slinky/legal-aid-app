@@ -1,8 +1,5 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
-import { BOOKING_EDIT } from '../../actions/bookings';
-import BookingEdit from './BookingEdit';
-import BookingDisplay from './BookingDisplay';
 import styles from '../app/App.css';
 import Header from '../../containers/header/Header';
 
@@ -21,18 +18,6 @@ export default class BookingDetail extends PureComponent {
     contacts: '',
     upcomingDates: '',
     notes: '',
-    // mcsoName: this.props.mcsoName,
-    // mcsoAge: this.props.mcsoAge,
-    // mcsoGender: this.props.mcsoGender,
-    // mcsoRace: this.props.mcsoRace,
-    // mcsoHeight: this.props.mcsoHeight,
-    // mcsoWeight: this.props.mcsoWeight,
-    // mcsoHair: this.props.mcsoHair,
-    // mcsoEyes: this.props.mcsoEyes,
-    // mcsoArrestingAgency: this.props.mcsoArrestingAgency,
-    // mcsoBookingDate: this.props.mcsoBookingDate,
-    // mcsoAssignedFacility: this.props.mcsoAssignedFacility,
-    // mcsoProjectedReleaseDate: this.props.mcsoProjectedReleaseDate
   };
 
   componentDidUpdate(prevProps) {
@@ -53,31 +38,18 @@ export default class BookingDetail extends PureComponent {
     this.setState({ [target.name]: target.value });
   };
 
-  handleSubmit = event => {
-    const { editBooking } = this.props;
-    const {
-      swisId,
-      preferredName,
-      gender,
-      pronouns,
-      primaryOrgContact,
-      contacts,
-      upcomingDates,
-      notes,
-      mcsoName,
-      mcsoAge,
-      mcsoGender,
-      mcsoRace,
-      mcsoHeight,
-      mcsoWeight,
-      mcsoHair,
-      mcsoEyes,
-      mcsoArrestingAgency,
-      mcsoBookingDate,
-      mcsoAssignedFacility,
-      mcsoProjectedReleaseDate
-    } = this.state;
+  handleEdit = () => {
+    this.setState({ editing: true });
+  };
 
+  handleCancel = () => {
+    this.setState({ editing: false });
+  };
+
+  handleSubmit = event => {
+    event.preventDefault();
+    this.props.editBooking({ ...this.props.booking, ...this.state });
+    this.handleCancel();
   };
 
   render() {
@@ -139,11 +111,16 @@ export default class BookingDetail extends PureComponent {
           <label htmlFor="notes">Notes: </label>
           <input name="notes" onChange={this.handleChange} value={notes}></input>
 
-          <button></button>
+          {editing &&
+            <>
+              <button type="reset" onClick={this.handleCancel}>Cancel</button>
+              <button type="submit">Save Changes</button>
+            </>
+          }
+          {!editing &&
+            <button onClick={this.handleEdit}>Edit Booking</button>
+          }
         </form>
-        {/* {editing ?
-          <BookingEdit booking={booking}/> : */}
-          {/* // <BookingDisplay booking={booking}/>} */}
       </>
     );
   }

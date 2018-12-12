@@ -2,7 +2,7 @@ import store from '../store';
 import { updateSessionToken } from '../actions/session';
 import { getSessionToken } from '../selectors/session';
 
-let token = window.localStorage.getItem('token'); //may or may not be okay 
+let token = window.localStorage.getItem('token'); //may or may not be okay
 
 const setToken = newToken => {
   token = newToken;
@@ -42,3 +42,4 @@ const request = (url, method, body) => {
 
 export const get = url => request(url, 'GET');
 export const post = (url, body) => request(url, 'POST', body);
+export const put = (url, body) => request(url, 'PUT', body);
