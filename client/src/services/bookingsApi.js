@@ -14,5 +14,5 @@ export const getBooking = id => {
 };
 
 export const updateBooking = () => {
-
+  
 };
