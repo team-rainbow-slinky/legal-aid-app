@@ -12,14 +12,14 @@ export default class BookingDetail extends PureComponent {
 
   state = {
     editing: false,
-    // swisId: this.props.swisId,
-    // preferredName: this.props.preferredName,
-    // gender: this.props.gender,
-    // pronouns: this.props.pronouns,
-    // primaryOrgContact: this.props.primaryOrgContact,
-    // contacts: this.props.contacts,
-    // upcomingDates: this.props.upcomingDates,
-    // notes: this.props.notes,
+    swisId: '',
+    preferredName: '',
+    gender: '',
+    pronouns: '',
+    primaryOrgContact: '',
+    contacts: '',
+    upcomingDates: '',
+    notes: '',
     // mcsoName: this.props.mcsoName,
     // mcsoAge: this.props.mcsoAge,
     // mcsoGender: this.props.mcsoGender,
@@ -34,6 +34,21 @@ export default class BookingDetail extends PureComponent {
     // mcsoProjectedReleaseDate: this.props.mcsoProjectedReleaseDate
   };
 
+  componentDidUpdate(prevProps) {
+    if(prevProps !== this.props){
+      const { booking } = this.props;
+      this.setState({
+        swisId: booking.swisId,
+        preferredName: booking.preferredName,
+        gender: booking.gender,
+        pronouns: booking.pronouns,
+        primaryOrgContact: booking.primaryOrgContact,
+        contacts: booking.contacts,
+        upcomingDates: booking.upcomingDates,
+        notes: booking.notes
+      });
+    }
+  }
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
@@ -66,15 +81,30 @@ export default class BookingDetail extends PureComponent {
   };
 
   render() {
-    const { editing } = this.state;
+    // const { editing } = this.state;
     const { booking } = this.props;
     if(!booking) return null;
     return (
       <>
         <h3>Booking</h3>
-        {editing ?
-          <BookingEdit booking={booking}/> :
-          <BookingDisplay booking={booking}/>}
+        <div>
+          <p>Legal Name: {booking.mcsoName}</p>
+          <p>Age: {booking.mcsoAge}</p>
+          <p>Gender: {booking.mcsoGender}</p>
+          <p>Race: {booking.mcsoRace}</p>
+          <p>Height: {booking.mcsoHeight}</p>
+          <p>Weight: {booking.mcsoWeight}</p>
+          <p>Hair: {booking.mcsoHair}</p>
+          <p>Eyes: {booking.mcsoEyes}</p>
+          <p>Arresting Agency: {booking.mcsoArrestingAgency}</p>
+          <p>Booking Date: {booking.mcsoBookingDate}</p>
+          <p>Assigned Facility: {booking.mcsoAssignedFacility}</p>
+          <p>Projected Release Date: {booking.mcsoProjectedReleaseDate}</p>
+
+        </div>
+        {/* {editing ?
+          <BookingEdit booking={booking}/> : */}
+          {/* // <BookingDisplay booking={booking}/>} */}
       </>
     );
   }
