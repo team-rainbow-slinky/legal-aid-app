@@ -7,12 +7,16 @@ export const BOOKING_ERROR = 'BOOKING_ERROR';
 export const FETCH_BOOKINGS = 'FETCH_BOOKINGS';
 export const fetchBookings = () => ({
   type: FETCH_BOOKINGS,
+  loadStart: BOOKING_LOADING,
+  loadEnd: BOOKING_LOADED,
   payload: getBookings()
 });
 
 export const FETCH_BOOKING = 'FETCH_BOOKING';
 export const fetchBooking = id => ({
   type: FETCH_BOOKING,
+  loadStart: BOOKING_LOADING,
+  loadEnd: BOOKING_LOADED,
   payload: getBooking(id)
 });
 
