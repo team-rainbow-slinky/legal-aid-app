@@ -6,7 +6,7 @@ export default function OrgHome() {
   return (
     <>
       <Header/>
-      <h1>HOME</h1>
+      <h1>Organization Records</h1>
       <Bookings />
     </>
   );
