@@ -61,7 +61,7 @@ const mockMcsoRecords = [
   mcsoHair: 'Black',
   mcsoEyes: 'Green',
   mcsoArrestingAgency: 'Multnomah County Sheriff Booking',
-  mcsoBookingDate: '12/06/2018 06:33 PM',
+  mcsoBookingDate: '12/10/2018 06:33 PM',
   mcsoAssignedFacility: 'PERM',
   mcsoProjectedReleaseDate: 'Unknown' },
   { swisId: '734537',

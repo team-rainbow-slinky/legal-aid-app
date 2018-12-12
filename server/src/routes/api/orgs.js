@@ -5,6 +5,7 @@ import { HttpError } from '../../middleware/error';
 import requireAuth from '../../middleware/requireAuth';
 import confirmOrg from '../../middleware/confirmOrg';
 import { getMcsoRecords } from '../../services/scraper';
+import moment from 'moment';
 
 export default Router()
   .get('/:orgId', requireAuth, confirmOrg, (req, res, next) => {
@@ -27,6 +28,15 @@ export default Router()
   .get('/:orgId/mcso', (req, res, next) => {
     const { orgId } = req.params;
     const query = { org: orgId };
+    const { name, start, end } = req.query;
+
+    let queryName;
+    let queryStart;
+    let queryEnd;
+    if(name) queryName = name.toUpperCase();
+    if(start) queryStart = moment(start, 'MM/DD/YYYY hh:mm A', true);
+    if(end) queryEnd = moment(end, 'MM/DD/YYYY hh:mm A', true);
+
 
     const promises = [
       Booking.find(query)
@@ -36,8 +46,27 @@ export default Router()
 
     Promise.all(promises)
       .then(([swisIds, mcsoBookings]) => {
-        return mcsoBookings.filter(mcso => !swisIds.includes(mcso.swisId))
+        return mcsoBookings.filter(mcso => {
+          return !swisIds.includes(mcso.swisId)
+          && includesName(queryName, mcso.mcsoName)
+          && isInTimeFrame(queryStart, queryEnd, mcso.mcsoBookingDate)
+        })
       })
       .then(filteredResults => res.json(filteredResults))
       .catch(next);
   });
+
+  function includesName(name, mcso) {
+    if(!name) return true;
+    mcso = mcso.toUpperCase();
+    return mcso.includes(name);
+  }
+
+  function isInTimeFrame(startDate, endDate, mcso) {
+    if(!startDate || !endDate) return true;
+    if(!mcso) return false;
+    const mcsoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true);
+    if(!mcsoDate.isValid() || !startDate.isValid() || !endDate.isValid()) return false;
+    if(mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate)) return true;
+    return false;
+  }

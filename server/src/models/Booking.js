@@ -16,6 +16,7 @@ const bookingSchema = new mongoose.Schema ({
   primaryOrgContact: String,
   contacts: String,
   upcomingDates: String,
+  meetingHistory: String,
   notes: String,
   mcsoName: String,
   mcsoAge: Number,
