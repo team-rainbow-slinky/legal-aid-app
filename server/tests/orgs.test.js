@@ -54,4 +54,23 @@ describe('org tests', () => {
       })
   });
 
+  it('further filters bookings from mcso by last name', async () => {
+    const tokens = await getTokens();
+    const org = await getOrg({ name: org1.name });
+    const queryName = 'ble';
+    return request(app)
+      .get(`/api/orgs/${org._id}/mcso`)
+      .query({ name: queryName})
+      .set('Authorization', `Bearer ${tokens.org1User1}`)
+      .then(res => {
+        expect(res.body.length).toEqual(2);
+        expect(res.body[0].mcsoName.toUpperCase()).toContain(queryName.toUpperCase());
+        expect(res.body[1].mcsoName.toUpperCase()).toContain(queryName.toUpperCase());
+      })
+  })
+
+  // it('filters bookings from mcso by date of booking', () => {
+
+  // });
+
 });
