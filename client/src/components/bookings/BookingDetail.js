@@ -3,6 +3,8 @@ import PropTypes from 'prop-types';
 import { BOOKING_EDIT } from '../../actions/bookings';
 import BookingEdit from './BookingEdit';
 import BookingDisplay from './BookingDisplay';
+import styles from '../app/App.css';
+import Header from '../../containers/header/Header';
 
 export default class BookingDetail extends PureComponent {
   static propTypes = {
@@ -94,6 +96,7 @@ export default class BookingDetail extends PureComponent {
 
     return (
       <>
+        <Header />
         <h3>Booking</h3>
         <div>
           <h3>MCSO Data</h3>
@@ -112,31 +115,31 @@ export default class BookingDetail extends PureComponent {
           <p>Projected Release Date: {booking.mcsoProjectedReleaseDate}</p>
         </div>
 
-        <form>
-          <fieldset>
-            <legend>NLG Data</legend>
-            <label htmlFor="preferredName">Preferred Name: </label>
-            <input name="preferredName" onChange={this.handleChange} value={preferredName}></input>
+        <form className={styles.form} onSubmit={this.handleSubmit}>
 
-            <label htmlFor="gender">Gender: </label>
-            <input name="gender" onChange={this.handleChange} value={gender}></input>
+          <legend>NLG Data</legend>
+          <label htmlFor="preferredName">Preferred Name: </label>
+          <input name="preferredName" onChange={this.handleChange} value={preferredName}></input>
 
-            <label htmlFor="pronouns">Pronouns: </label>
-            <input name="pronouns" onChange={this.handleChange} value={pronouns}></input>
+          <label htmlFor="gender">Gender: </label>
+          <input name="gender" onChange={this.handleChange} value={gender}></input>
 
-            <label htmlFor="primaryOrgContact">Primary Contact at NLG: </label>
-            <input name="primaryOrgContact" onChange={this.handleChange} value={primaryOrgContact}></input>
+          <label htmlFor="pronouns">Pronouns: </label>
+          <input name="pronouns" onChange={this.handleChange} value={pronouns}></input>
 
-            <label htmlFor="contacts">Contacts: </label>
-            <input name="contacts" onChange={this.handleChange} value={contacts}></input>
+          <label htmlFor="contacts">Personal Contacts: </label>
+          <input name="contacts" onChange={this.handleChange} value={contacts}></input>
 
-            <label htmlFor="upcomingDates">Upcoming Dates: </label>
-            <input name="upcomingDates" onChange={this.handleChange} value={upcomingDates}></input>
+          <label htmlFor="primaryOrgContact">Primary Contact at NLG: </label>
+          <input name="primaryOrgContact" onChange={this.handleChange} value={primaryOrgContact}></input>
 
-            <label htmlFor="notes">Notes: </label>
-            <input name="notes" onChange={this.handleChange} value={notes}></input>
+          <label htmlFor="upcomingDates">Upcoming Dates: </label>
+          <input name="upcomingDates" onChange={this.handleChange} value={upcomingDates}></input>
 
-          </fieldset>
+          <label htmlFor="notes">Notes: </label>
+          <input name="notes" onChange={this.handleChange} value={notes}></input>
+
+          <button></button>
         </form>
         {/* {editing ?
           <BookingEdit booking={booking}/> : */}
