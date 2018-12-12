@@ -11,11 +11,9 @@ const Header = ({ user, handleLogout }) => {
   return (
     <header>
       <nav>
-        {user && <NavLink to={ROUTES.ORGHOME.linkTo()}>HOME</NavLink>}
-        {user
-          ? <NavLink to={ROUTES.LOGIN.linkTo()} onClick={handleLogout}>Logout</NavLink> //if there is a user
-          : <h3>hi</h3>
-        }
+        {user && <NavLink to={ROUTES.ORGHOME.linkTo()}>Home</NavLink>}
+        {user && <NavLink to={ROUTES.SEARCHMCSO.linkTo()}>Search MCSO</NavLink>}
+        {user && <NavLink to={ROUTES.LOGIN.linkTo()} onClick={handleLogout}>Logout</NavLink>}
       </nav>
     </header>
   );

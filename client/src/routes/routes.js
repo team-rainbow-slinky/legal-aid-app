@@ -3,18 +3,25 @@ import { Route, Link } from 'react-router-dom';
 import OrgHome from '../components/orgHome/OrgHome';
 import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
+import SearchMCSO from '../containers/SearchMCSO';
+
 
 export const ROUTES = {
   ORGHOME: {
     path: '/',
     Component: withSession(OrgHome),
-    linkTo: () => '/' // will need orgId added
+    linkTo: () => '/'
   },
   LOGIN: {
     path: '/login',
     Component: Login,
     linkTo: () => '/login'
   },
+  SEARCHMCSO: {
+    path: '/search_mcso',
+    Component: withSession(SearchMCSO),
+    linkTo: () => '/search_mcso'
+  }
   // BOOKING: {
   //   path: '/bookings/:id',
   //   Component: withSession(),

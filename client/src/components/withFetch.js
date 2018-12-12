@@ -12,6 +12,7 @@ export const withFetch = (Component, options = {}) => {
     };
 
     componentDidMount() {
+      console.log('hiiiiiiigh');
       const promise = this.props.fetch();
       if(!promise || typeof promise.then !== 'function') return;
 
