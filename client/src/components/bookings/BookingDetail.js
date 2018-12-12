@@ -67,10 +67,14 @@ export default class BookingDetail extends PureComponent {
 
   render() {
 
+    const { booking } = this.props;
+    console.log(booking);
+    if(!booking) return null;
+    console.log('DETAIL', booking);
     return (
       <>
         <h3>Booking</h3>
-        <BookingDisplay></BookingDisplay>
+        <BookingDisplay booking={booking}/>
       </>
     );
   }

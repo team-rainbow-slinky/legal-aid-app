@@ -4,6 +4,7 @@ import OrgHome from '../components/orgHome/OrgHome';
 import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
 import BookingDetail from '../components/bookings/BookingDetail';
+import BookingDetailContainer from '../containers/BookingDetailContainer';
 
 export const ROUTES = {
   ORGHOME: {
@@ -18,7 +19,7 @@ export const ROUTES = {
   },
   BOOKING_DETAIL: {
     path: '/bookings/:id',
-    Component: withSession(BookingDetail),
+    Component: withSession(BookingDetailContainer),
     linkTo: id => `/bookings/${id}`
   }
 };
