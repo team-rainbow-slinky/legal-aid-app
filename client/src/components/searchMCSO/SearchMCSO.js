@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import Header from '../../containers/header/Header';
 import PropTypes from 'prop-types';
 import { withList } from '../withList';
+import styles from '../app/App.css';
 
 class StateRecord extends PureComponent {
   static propTypes = {
@@ -23,9 +24,11 @@ class StateRecord extends PureComponent {
   render() {
     return (
       <>
-        <input type="checkbox" value={this.state.selected} onChange={this.handleSelection}/>
-        <span>{this.props.mcsoName}</span>
-        <span>{this.props.mcsoBookingDate}</span>
+        <p>
+          <input type="checkbox" value={this.state.selected} onChange={this.handleSelection}/>
+          <span>{this.props.mcsoName}</span>
+          <span>{this.props.mcsoBookingDate}</span>
+        </p>
       </>
     );
   }
@@ -55,7 +58,7 @@ class SearchMCSOForm extends PureComponent {
 
     return (
       <>
-      <form onSubmit={this.handleSubmit}>
+      <form onSubmit={this.handleSubmit} className={styles.form}>
         <p>
           <label>Name contains:</label>
           <input name="mcsoName" type="text" value={mcsoName} onChange={this.handleChange}/>
@@ -80,7 +83,8 @@ export default class SearchMCSO extends PureComponent {
         <Header />
         <h1>Search MCSO Records</h1>
         <SearchMCSOForm />
-        <StateRecords list={ [{ mcsoName: 'fake name', mcsoBookingDate: 'somefake date', onSelection: () => {} }] }/>
+        <h1>Results</h1>
+        <StateRecords list={ this.props.list }/>
       </>
     );
   }

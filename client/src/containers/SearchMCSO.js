@@ -18,10 +18,7 @@ export default connect(
   mapDispatchToProps
 )(
   withFetch(
-    withList(
-      SearchMCSO,
-      { idKey: 'swisId', spread: true }
-    ),
+    SearchMCSO,
     { dataKey: 'stateRecords', defaultValue: [] }
   )
 );

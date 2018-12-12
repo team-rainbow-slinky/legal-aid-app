@@ -1,0 +1,13 @@
+.nav {
+  display: flex;
+  justify-content: space-around;
+  background-color: #d9ffb3;
+  a {
+    padding: 1em;
+    text-decoration: none;
+    color: black;
+    &:hover {
+      color: #989898;
+    }
+  }
+}

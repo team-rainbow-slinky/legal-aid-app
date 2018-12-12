@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import { Redirect } from 'react-router-dom';
 import PropTypes from 'prop-types';
 import { ROUTES } from '../../routes/routes';
+import styles from '../app/App.css';
 
 export class AuthForm extends PureComponent {
   static propTypes = {
@@ -32,10 +33,16 @@ export class AuthForm extends PureComponent {
 
     return (
       <>
-        <h1>Sign In</h1>
-        <form onSubmit={this.handleSubmit}>
-          <input type="email" name="email" value={email} onChange={this.handleChange} />
-          <input type="password" name="password" value={password} onChange={this.handleChange} />
+        <form onSubmit={this.handleSubmit} className={styles.form}>
+          <p>
+            <label>Email:</label>
+            <input type="email" name="email" value={email} onChange={this.handleChange} />
+          </p>
+          <p>
+            <label>Password:</label>
+            <input type="password" name="password" value={password} onChange={this.handleChange} />
+          </p>
+          
           <button>Sign In</button>
         </form>
       </>
