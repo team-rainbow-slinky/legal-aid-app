@@ -64,10 +64,9 @@ export default Router()
 
   function isInTimeFrame(startDate, endDate, mcso) {
     if(!startDate || !endDate) return true;
-    const mscoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true);
-    console.log('mscoDate', mscoDate, 'startDate', startDate, 'endDate', endDate);
-    console.log('boolean', true);
-    console.log('boolean2', mcsoDate.isBefore(endDate));
-    if(mcsoDate.isAfter(startDate) && mcsoDate.isBefore(endDate)) return true;
+    if(!mcso) return false;
+    const mcsoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true);
+    if(!mcsoDate.isValid() || !startDate.isValid() || !endDate.isValid()) return false;
+    if(mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate)) return true;
     return false;
   }
