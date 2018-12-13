@@ -11,9 +11,8 @@ import {
 } from './initialData';
 
 connect ();
-//return mongoose.connection.dropDatabase();
 generateData();
-return mongoose.disconnect();
+
 
 async function generateData() {
   let orgs;
@@ -29,4 +28,5 @@ async function generateData() {
     { ...org2User1, org: orgs[1] },
     { ...org2User2, org: orgs[1] }
   );
+  return await mongoose.disconnect();
 }
