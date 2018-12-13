@@ -97,7 +97,8 @@ export default Router()
   .delete('/:bookingId', requireAuth, (req, res, next) => {
     const { bookingId } = req.params;
     Booking.findByIdAndDelete(bookingId)
-      .then(result => res.json(result))
+      .then(deletedBooking => {
+        res.json({ removed: !!deletedBooking });
+      })
       .catch(next);
   });
-  
