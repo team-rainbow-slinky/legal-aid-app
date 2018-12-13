@@ -125,6 +125,7 @@ export default class BookingDetail extends PureComponent {
             <p>Booking Date: {booking.mcsoBookingDate}</p>
             <p>Assigned Facility: {booking.mcsoAssignedFacility}</p>
             <p>Projected Release Date: {booking.mcsoProjectedReleaseDate}</p>
+            <p dangerouslySetInnerHTML={{ __html: booking.chargesHTML }}></p>
           </div>
         </div>
       </>
