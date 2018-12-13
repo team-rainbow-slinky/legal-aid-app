@@ -1,12 +1,14 @@
 import { connect } from 'react-redux';
-import { getStateRecords } from '../selectors/stateRecords';
+import { getStateRecords, getStateRecordsLoaded, getStateRecordsLoading } from '../selectors/stateRecords';
 import { fetchStateRecords, addStateRecords } from '../actions/stateRecords';
 import { SearchMCSO } from '../components/searchMCSO/SearchMCSO';
 import { getOrgId } from '../selectors/session';
 
 const mapStateToProps = state => ({
   list: getStateRecords(state),
-  org: getOrgId(state)
+  org: getOrgId(state),
+  searchComplete: getStateRecordsLoaded(state),
+  loading: getStateRecordsLoading(state)
 });
 
 const mapDispatchToProps = dispatch => ({

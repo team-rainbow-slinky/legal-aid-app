@@ -14,6 +14,11 @@ h1 {
   font-family: 'Noto Serif TC', serif;
 }
 
+.searchError {
+  color: red;
+  text-align: center;
+}
+
 .headText {
   font-size: 6vh;
 }
@@ -79,7 +84,7 @@ h1 {
         text-align: center;
         font-style: normal;
         width: 100%;
-        border: 1px solid #d9ffb3;;
+        border: 1px solid #d9ffb3;
         border-width: 1px 1px 3px;
         margin-bottom: 10px;
         transition: border .4s ease-out;
@@ -87,7 +92,35 @@ h1 {
         &:hover {
             border: 5px solid #006600;
         }
+        &:disabled {
+            border: 5px solid #d9ffb3;
+
+        }
     }
+}
+
+.loading {
+  animation:extend 2s steps(3, end) infinite;
+  display:inline-block;
+  overflow:hidden;
+  vertical-align:bottom;
+  &:before {
+    content:"...";
+  }
+}
+
+@keyframes extend {
+  0% {
+    width:.25em;
+  }
+  100% {
+    width:1em;
+  }
+}
+
+.loadingButton {
+    text-align: left !important;
+    padding-left: 41% !important;
 }
 
 @media screen and (max-width: 450px) {
