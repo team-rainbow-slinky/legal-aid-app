@@ -3,6 +3,9 @@ import Header from '../../containers/header/Header';
 import PropTypes from 'prop-types';
 import { withList } from '../withList';
 import styles from '../app/App.css';
+import DatePicker from 'react-datepicker';
+import 'react-datepicker/dist/react-datepicker-cssmodules.css';
+import './SearchMCSO.css';
 
 class StateRecord extends PureComponent {
   static propTypes = {
@@ -37,21 +40,34 @@ class StateRecord extends PureComponent {
 
 const StateRecords = withList(StateRecord, { spread: true });
 
+
+
 class SearchMCSOForm extends PureComponent {
   state = {
     name: '',
-    start: '',
-    end: ''
+    start: null,
+    end: null
   };
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
 
+  changeStart = start => {
+    this.setState({ start });
+  };
+
+  changeEnd = end => {
+    this.setState({ end });
+  };
+
   handleSubmit = event => {
     event.preventDefault();
-    this.props.fetch(this.state);
-    console.log(this.state);
+    const { start, end, name } = this.state;
+    const startString = start && start.toISOString();
+    const endString = end && end.toISOString();
+    this.props.fetch({ name, start: startString, end: endString });
+    console.log('this.state', this.state);
   };
 
   render() {
@@ -63,17 +79,41 @@ class SearchMCSOForm extends PureComponent {
           <label>Name contains:</label>
           <input name="name" type="text" value={name} onChange={this.handleChange}/>
         </p>
-        <p>
+        <div>
           <label>Date and Time Range:</label>
-          <input name="start" type="date" value={start} onChange={this.handleChange}/>
-          <input name="end" type="date" value={end} onChange={this.handleChange}/>
-        </p>
+          <DatePicker
+            selected={start}
+            selectsStart
+            startDate={start}
+            endDate={end}
+            onChange={this.changeStart}
+            showTimeSelect
+            maxDate={end || new Date()}
+            placeholderText="Select a date range START within the last 7 days"
+            dateFormat="MMMM d, yyyy h:mm aa"
+          />
+
+          <DatePicker
+            selected={end}
+            selectsEnd
+            startDate={start}
+            endDate={end}
+            onChange={this.changeEnd}
+            showTimeSelect
+            maxDate={new Date()}
+            minDate={start}
+            dateFormat="MMMM d, yyyy h:mm aa"
+            placeholderText="Select a date range END within the last 7 days"
+          />
+        </div>
         <button type="submit">Search</button>
       </form>
       </>
     );
   }
 }
+
+
 
 export class SearchMCSO extends PureComponent {
   state = {
@@ -98,7 +138,11 @@ export class SearchMCSO extends PureComponent {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('recordsToAdd', this.state);
+    const recordsToAdd = this.state.recordsToAdd.map((swisId) => {
+      return { ...this.props.list.find(record => record.swisId === swisId), org: this.props.org };
+    });
+    this.props.onSubmit(recordsToAdd);
+    return this.props.history.push('/');
   };
 
   render() {
@@ -108,11 +152,15 @@ export class SearchMCSO extends PureComponent {
         <Header />
         <h1>Search MCSO Records</h1>
         <SearchMCSOForm fetch={this.props.fetch} />
-        <h1>Results</h1>
-        <form onSubmit={this.handleSubmit} className={styles.form}>
-          <StateRecords list={ this.props.list } onSelection={ this.onSelection } />
-          <button type="submit">Add</button>
-        </form>
+        {this.props.list.length > 0 &&
+        <div>
+          <h1>Results</h1>
+          <form onSubmit={this.handleSubmit} className={styles.form}>
+            <StateRecords list={ this.props.list } onSelection={ this.onSelection } />
+            <br/>
+            <button type="submit">Add</button>
+          </form>
+        </div>}
       </>
     );
   }
