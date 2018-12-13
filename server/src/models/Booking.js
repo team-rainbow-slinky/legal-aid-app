@@ -29,7 +29,8 @@ const bookingSchema = new mongoose.Schema ({
   mcsoArrestingAgency: String,
   mcsoBookingDate: String,  // or maybe date?
   mcsoAssignedFacility: String,
-  mcsoProjectedReleaseDate: String
+  mcsoProjectedReleaseDate: String,
+  chargesHTML: String
 });
 
 export default mongoose.model('Booking', bookingSchema);

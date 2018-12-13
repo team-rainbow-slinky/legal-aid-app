@@ -4,28 +4,28 @@ const { parse } = require('node-html-parser');
 export const getMcsoRecords = () => {
 
   return request.post('http://www.mcso.us/PAID/Home/SearchResults')
-  .timeout({
-    response: 30000,  // Wait 30 seconds for the server to start sending,
-    deadline: 60000, // but allow 1 minute for the file to finish loading.
-  })
-  .type('form')
-  .send(
-    { FirstName: '',
-      LastName: '',
-      SearchType: 3 })
-  .then(res => res.text)
-  .then(parse)
-  .then(findLinks)
-  .then(returnPaths)
-  .then(paths => {
-    paths.length = 20;
-    return Promise.all(paths.map(path => requestArrest(path)));
-  })
-  .then(response => {
-    return response;
-  });
+    .timeout({
+      response: 30000,  // Wait 30 seconds for the server to start sending,
+      deadline: 60000, // but allow 1 minute for the file to finish loading.
+    })
+    .type('form')
+    .send(
+      { FirstName: '',
+        LastName: '',
+        SearchType: 3 })
+    .then(res => res.text)
+    .then(parse)
+    .then(findLinks)
+    .then(returnPaths)
+    .then(paths => {
+      return Promise.all(paths.map(path => requestArrest(path)));
+    })
+    .then(arrests => arrests.filter(arrest => arrest !== null))
+    .then(response => {
+      return response;
+    });
 
-}
+};
 
 const findLinks = html => {
   return html.querySelectorAll('.search-results td a');
@@ -52,12 +52,14 @@ const parseArrestPage = html => ({
   mcsoArrestingAgency: arrestPageValueAt(html, 9),
   mcsoBookingDate: arrestPageValueAt(html, 10),
   mcsoAssignedFacility: arrestPageValueAt(html, 11),
-  mcsoProjectedReleaseDate: arrestPageValueAt(html, 12)
+  mcsoProjectedReleaseDate: arrestPageValueAt(html, 12),
+  chargesHTML: html.querySelector('#charge-info').innerHTML.replace(/\r?\n|\r/g, '')
 });
 
 const requestArrest = path => {
   return request.get(`http://www.mcso.us${path}`)
     .then(res => res.text)
     .then(parse)
-    .then(parseArrestPage);
+    .then(parseArrestPage)
+    .catch(() => null);
 };

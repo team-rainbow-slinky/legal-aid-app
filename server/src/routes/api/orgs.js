@@ -11,18 +11,18 @@ export default Router()
   .get('/:orgId', requireAuth, confirmOrg, (req, res, next) => {
     const { orgId } = req.params;
     Org.findById(orgId)
-    .lean()
-    .then(org => res.json(org))
-    .catch(next);
+      .lean()
+      .then(org => res.json(org))
+      .catch(next);
   })
 
   .get('/:orgId/bookings', requireAuth, confirmOrg, (req, res, next) => {
     const { orgId } = req.params;
     const query = { org: orgId };
     Booking.find(query)
-    .lean()
-    .then(bookings => res.json(bookings))
-    .catch(next);
+      .lean()
+      .then(bookings => res.json(bookings))
+      .catch(next);
   })
 
   .get('/:orgId/mcso', (req, res, next) => {
@@ -33,14 +33,14 @@ export default Router()
     let queryName;
     let queryStart;
     let queryEnd;
-    if(name) queryName = name.toUpperCase();
-    if(start) queryStart = moment(start, 'MM/DD/YYYY hh:mm A', true);
-    if(end) queryEnd = moment(end, 'MM/DD/YYYY hh:mm A', true);
 
+    if(name) queryName = name.toUpperCase();
+    if(start) queryStart = moment(start, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true);
+    if(end) queryEnd = moment(end, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true);
 
     const promises = [
       Booking.find(query)
-              .then(bookings => bookings.map(booking => booking.swisId)),
+        .then(bookings => bookings.map(booking => booking.swisId)),
       getMcsoRecords()
     ];
 
@@ -49,24 +49,24 @@ export default Router()
         return mcsoBookings.filter(mcso => {
           return !swisIds.includes(mcso.swisId)
           && includesName(queryName, mcso.mcsoName)
-          && isInTimeFrame(queryStart, queryEnd, mcso.mcsoBookingDate)
-        })
+          && isInTimeFrame(queryStart, queryEnd, mcso.mcsoBookingDate);
+        });
       })
       .then(filteredResults => res.json(filteredResults))
       .catch(next);
   });
 
-  function includesName(name, mcso) {
-    if(!name) return true;
-    mcso = mcso.toUpperCase();
-    return mcso.includes(name);
-  }
+function includesName(name, mcso) {
+  if(!name) return true;
+  mcso = mcso.toUpperCase();
+  return mcso.includes(name);
+}
 
-  function isInTimeFrame(startDate, endDate, mcso) {
-    if(!startDate || !endDate) return true;
-    if(!mcso) return false;
-    const mcsoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true);
-    if(!mcsoDate.isValid() || !startDate.isValid() || !endDate.isValid()) return false;
-    if(mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate)) return true;
-    return false;
-  }
+function isInTimeFrame(startDate, endDate, mcso) {
+  if(!startDate || !endDate) return true;
+  if(!mcso) return false;
+  const mcsoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true);
+  if(!mcsoDate.isValid() || !startDate.isValid() || !endDate.isValid()) return false;
+  if(mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate)) return true;
+  return false;
+}
