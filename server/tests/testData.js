@@ -1,4 +1,4 @@
-export const org1 = { name: 'National Lawyers Guild' };
+export const org1 = { name: 'National Lawyers Guild', logoUrl: 'https://pbs.twimg.com/profile_images/941754948622073856/Um1IB46F_400x400.jpg' };
 export const org1User1 = { email: 'user1@gmail.com', password: 'password' };
 export const org1User2 = { email: 'user2@gmail.com', password: 'password' };
 export const org1Booking1 = {
@@ -56,7 +56,7 @@ export const org1Booking2 = {
       <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                </ol>            </div>    `
 };
 
-export const org2 = { name: 'Legal Observers' };
+export const org2 = { name: 'Legal Observers', logoUrl: 'https://img.huffingtonpost.com/asset/5bb631f41f0000df0024adad.jpeg?cache=3nq5hurl5h&ops=scalefit_720_noupscale' };
 export const org2User1 = { email: 'user3@gmail.com', password: 'password' };
 export const org2User2 = { email: 'user4@gmail.com', password: 'password' };
 export const org2Booking1 = {
