@@ -1,14 +1,14 @@
 export const errorHandler = (err, req, res, next) => {
   let status = 500;
-  let message = 'Server error'
+  let message = 'Server error';
 
-  if (err instanceof HttpError) {
+  if(err instanceof HttpError) {
     status = err.code;
-    message = err.message
+    message = err.message;
   }
 
-  res.status(status).json({ error: err.message })
-}
+  res.status(status).json({ error: err.message });
+};
 
 
 export class HttpError extends Error {

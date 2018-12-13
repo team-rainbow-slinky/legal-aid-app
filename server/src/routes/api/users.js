@@ -9,7 +9,7 @@ export default Router()
     User.create({ email, password, org })
       .then(user => {
         res.setHeader('X-AUTH-TOKEN', user.authToken());
-        res.json(user)
+        res.json(user);
       })
       .catch(next);
   })
@@ -18,7 +18,7 @@ export default Router()
     const { email, password } = req.body;
     User.findOne({ email })
       .then(user => {
-        if (!user || !user.compare(password)) return next(new HttpError({ code: 401, message: 'Invalid email/password' }));
+        if(!user || !user.compare(password)) return next(new HttpError({ code: 401, message: 'Invalid email/password' }));
         const authToken = user.authToken();
         res.setHeader('X-AUTH-TOKEN', authToken);
         res.json(user);

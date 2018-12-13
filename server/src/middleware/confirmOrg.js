@@ -10,7 +10,7 @@ export default (req, res, next) => {
       if(user.org === orgId) {
         next();
       } else {
-        return next(new HttpError({ code: 403, message: 'Access not permitted.'}))
+        return next(new HttpError({ code: 403, message: 'Access not permitted.' }));
       }
-    })
-}
+    });
+};

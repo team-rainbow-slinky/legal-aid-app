@@ -10,7 +10,8 @@
     "build": "babel src -d lib -s true",
     "prestart": "npm run build",
     "start": "node lib/index.js",
-    "start:watch": "nodemon src/index.js --exec babel-node"
+    "start:watch": "nodemon src/index.js --exec babel-node",
+    "lint": "eslint src tests"
   },
   "jest": {
     "testEnvironment": "node"
@@ -20,16 +21,20 @@
   "license": "ISC",
   "devDependencies": {
     "@babel/cli": "^7.2.0",
-    "@babel/core": "^7.2.0",
-    "@babel/node": "^7.2.0",
-    "@babel/plugin-proposal-class-properties": "^7.2.1",
+    "@babel/core": "^7.1.5",
+    "@babel/node": "^7.0.0",
+    "@babel/plugin-proposal-class-properties": "^7.1.0",
     "@babel/plugin-proposal-decorators": "^7.2.0",
-    "@babel/plugin-syntax-dynamic-import": "^7.2.0",
-    "@babel/preset-env": "^7.2.0",
+    "@babel/plugin-syntax-dynamic-import": "^7.0.0",
+    "@babel/preset-env": "^7.1.5",
+    "autoprefixer": "^9.3.1",
     "babel-core": "^7.0.0-bridge.0",
     "babel-eslint": "^10.0.1",
     "babel-jest": "^23.6.0",
+    "babel-loader": "^8.0.4",
     "eslint": "^5.9.0",
+    "eslint-plugin-babel": "^5.2.1",
+    "eslint-plugin-react": "^7.11.1",
     "jest": "^23.6.0",
     "nodemon": "^1.18.7",
     "supertest": "^3.3.0"
