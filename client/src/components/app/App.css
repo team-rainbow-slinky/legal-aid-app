@@ -43,7 +43,7 @@ h1 {
         height: 35px;
         border: 1px solid #ccc;
         margin-bottom: 15px;
-        padding-left: .5em;
+        padding-left: 2%;
     }
     textarea {
         width: 100%;
@@ -64,10 +64,11 @@ h1 {
 
     .checkbox {
         width: 5%;
-        margin-left: 5px;
+        margin-left: 14%;
     }
 
-    button {
+
+    & > button {
         position: relative;
         display: block;
         padding: 19px 39px 18px 39px;
@@ -86,5 +87,12 @@ h1 {
         &:hover {
             border: 5px solid #006600;
         }
+    }
+}
+
+@media screen and (max-width: 450px) {
+    .form .checkbox {
+        width: 5%;
+        margin-left: 2vw;
     }
 }

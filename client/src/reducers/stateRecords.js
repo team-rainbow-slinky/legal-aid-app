@@ -9,14 +9,15 @@ const initialState = {
   list: [],
   detail: null,
   loading: false,
+  searchComplete: false
 };
 
 export default function reducer(state = initialState, { type, payload }) {
   switch(type) {
     case STATE_RECORDS_LOADING:
-      return { ...state, loading: true };
+      return { ...state, loading: true, searchComplete: false };
     case STATE_RECORDS_LOADED:
-      return { ...state, loading: false };
+      return { ...state, loading: false, searchComplete: true };
     case STATE_RECORDS_ERROR:
       return { ...state, error: payload };
     case FETCH_STATE_RECORDS:
@@ -26,3 +27,6 @@ export default function reducer(state = initialState, { type, payload }) {
   }
 }
 
+//add a selector for searchComplete and use that to conditionally show the results component
+// in withList display total length of list
+// conditionally remove the add button if list length of records to add is zero 
