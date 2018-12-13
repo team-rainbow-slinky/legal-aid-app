@@ -24,7 +24,7 @@ describe('booking tests', () => {
       .set('Authorization', `Bearer ${tokens.org2User1}`)
       .then(res => {
         expect(res.body).toEqual(null);
-      })
+      });
   });
 
   it('creates a new booking', async () => {
@@ -77,6 +77,17 @@ describe('booking tests', () => {
       .send(updatedBooking)
       .then(res => {
         expect(res.body).toEqual(updatedBooking)
+      });
+  });
+
+  it('deletes a booking', async () => {
+    const tokens = await getTokens();
+    const bookingToDelete = await getBooking({ swisId: org1Booking1.swisId });
+    return request(app)
+      .delete(`/api/bookings/${bookingToDelete._id}`)
+      .set('Authorization', `Bearer ${tokens.org1User1}`)
+      .then(res => {
+        expect(res.body).toEqual({ removed: true });
       });
   });
 
