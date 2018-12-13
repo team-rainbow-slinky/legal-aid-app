@@ -1,6 +1,7 @@
 * {
   margin: 0;
   padding: 0;
+  box-sizing: border-box;
 }
 
 body {
@@ -34,19 +35,20 @@ h1 {
         height: 35px;
         border: 1px solid #ccc;
         margin-bottom: 15px;
+        padding-left: .5em;
     }
     textarea {
-        width: 100%; 
-        padding: 12px;  
-        border: 1px solid #ccc; 
-        border-radius: 4px; 
-        box-sizing: border-box; 
-        margin-top: 6px; 
-        margin-bottom: 16px; 
+        width: 100%;
+        padding: 12px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+        margin-top: 6px;
+        margin-bottom: 16px;
         resize: vertical;
     }
 
-    textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {   
+    textarea:focus, input:focus, input[type]:focus, .uneditable-input:focus {
         border-color: #99BE7F;
         box-shadow: 0 1px 1px #d9ffb3 inset, 0 0 8px #d9ffb3;
         outline: 0 none;
