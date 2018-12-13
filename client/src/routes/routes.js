@@ -3,6 +3,8 @@ import { Route, Link } from 'react-router-dom';
 import OrgHome from '../components/orgHome/OrgHome';
 import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
+import BookingDetail from '../components/bookings/BookingDetail';
+import BookingDetailContainer from '../containers/BookingDetailContainer';
 import SearchMCSO from '../containers/SearchMCSO';
 
 
@@ -17,16 +19,16 @@ export const ROUTES = {
     Component: Login,
     linkTo: () => '/login'
   },
+  BOOKING_DETAIL: {
+    path: '/bookings/:id',
+    Component: withSession(BookingDetailContainer),
+    linkTo: id => `/bookings/${id}`
+  },
   SEARCHMCSO: {
     path: '/search_mcso',
     Component: withSession(SearchMCSO),
     linkTo: () => '/search_mcso'
   }
-  // BOOKING: {
-  //   path: '/bookings/:id',
-  //   Component: withSession(),
-  //   linkTo: id => `/bookings/${id}`
-  // }
 };
 
 export const rootLinks = () => {

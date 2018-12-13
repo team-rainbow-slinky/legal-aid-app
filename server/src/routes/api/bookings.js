@@ -13,3 +13,77 @@ export default Router()
     .then(booking => res.json(booking))
     .catch(next);
   })
+
+  .post('/', requireAuth, (req, res, next) => {
+    const {
+      swisId, org, preferredName, gender,
+      pronouns, primaryOrgContact, contacts,
+      upcomingDates, meetingHistory, notes,
+      mcsoName, mcsoAge, mcsoGender, mcsoRace,
+      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+      mcsoArrestingAgency, mcsoBookingDate,
+      mcsoAssignedFacility, mcsoProjectedReleaseDate
+    } = req.body;
+
+    Booking.create({
+      swisId, org, preferredName, gender,
+      pronouns, primaryOrgContact, contacts,
+      upcomingDates, meetingHistory, notes,
+      mcsoName, mcsoAge, mcsoGender, mcsoRace,
+      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+      mcsoArrestingAgency, mcsoBookingDate,
+      mcsoAssignedFacility, mcsoProjectedReleaseDate
+    })
+      .then((booking => res.json(booking)))
+      .catch(next)
+  })
+
+  .post('/bulk', requireAuth, (req, res, next) => {
+    const bookings = req.body.map(({
+      swisId, org, preferredName, gender,
+      pronouns, primaryOrgContact, contacts,
+      upcomingDates, meetingHistory, notes,
+      mcsoName, mcsoAge, mcsoGender, mcsoRace,
+      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+      mcsoArrestingAgency, mcsoBookingDate,
+      mcsoAssignedFacility, mcsoProjectedReleaseDate
+    }) => ({
+      swisId, org, preferredName, gender,
+      pronouns, primaryOrgContact, contacts,
+      upcomingDates, meetingHistory, notes,
+      mcsoName, mcsoAge, mcsoGender, mcsoRace,
+      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+      mcsoArrestingAgency, mcsoBookingDate,
+      mcsoAssignedFacility, mcsoProjectedReleaseDate
+    }));
+
+    Booking.create(bookings)
+      .then(bookings => res.json(bookings))
+      .catch(next)
+  })
+
+  .put('/:bookingId', requireAuth, (req, res, next) => {
+    const { bookingId } = req.params;
+    const {
+      swisId, org, preferredName, gender,
+      pronouns, primaryOrgContact, contacts,
+      upcomingDates, meetingHistory, notes,
+      mcsoName, mcsoAge, mcsoGender, mcsoRace,
+      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+      mcsoArrestingAgency, mcsoBookingDate,
+      mcsoAssignedFacility, mcsoProjectedReleaseDate
+    } = req.body;
+
+    Booking.findByIdAndUpdate(bookingId, {
+      swisId, org, preferredName, gender,
+      pronouns, primaryOrgContact, contacts,
+      upcomingDates, meetingHistory, notes,
+      mcsoName, mcsoAge, mcsoGender, mcsoRace,
+      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+      mcsoArrestingAgency, mcsoBookingDate,
+      mcsoAssignedFacility, mcsoProjectedReleaseDate
+    },
+    { new: true })
+    .then(booking => res.json(booking))
+    .catch(next)
+  });

@@ -17,9 +17,9 @@ describe('bookings selectors', () => {
     });
   });
 
-  it.skip('returns the chosen detail booking', () => {
-    const oneBooking = getBooking(state);
+  it('returns the chosen detail booking', () => {
+    const oneBooking = getBooking(state, '1');
 
-    expect(oneBooking).toEqual({ hi: 'hi' });
+    expect(oneBooking).toEqual(seedBookings[0]);
   });
 });
