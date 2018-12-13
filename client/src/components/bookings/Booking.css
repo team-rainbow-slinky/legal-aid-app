@@ -1,4 +1,8 @@
 .orgBooking {
   text-align: center;
-  margin: 5% auto
+  margin: 5% auto;
+}
+
+.bookingLink {
+    text-decoration: none;
 }

@@ -8,7 +8,7 @@ import {
 } from '../actions/bookings';
 
 const initialState = {
-  list: [],
+  list: {},
   detail: null,
   loading: false,
 };
@@ -26,7 +26,7 @@ export default function reducer(state = initialState, { type, payload }) {
     case FETCH_BOOKING:
       return { ...state, detail: payload };
     case BOOKING_EDIT:
-      return { ...state, list: { ...state.list, payload } };
+      return { ...state, list: { ...state.list, [payload._id]: payload } };
     default: return state;
   }
 }

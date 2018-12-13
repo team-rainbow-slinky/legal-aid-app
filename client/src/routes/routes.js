@@ -3,7 +3,6 @@ import { Route, Link } from 'react-router-dom';
 import OrgHome from '../components/orgHome/OrgHome';
 import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
-import BookingDetail from '../components/bookings/BookingDetail';
 import BookingDetailContainer from '../containers/BookingDetailContainer';
 import SearchMCSO from '../containers/SearchMCSO';
 
