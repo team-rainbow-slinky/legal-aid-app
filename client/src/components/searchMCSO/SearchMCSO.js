@@ -43,8 +43,8 @@ const StateRecords = withList(StateRecord, { spread: true });
 class SearchMCSOForm extends PureComponent {
   state = {
     name: '',
-    start: '',
-    end: ''
+    start: null,
+    end: null
   };
 
   handleChange = ({ target }) => {
@@ -52,16 +52,19 @@ class SearchMCSOForm extends PureComponent {
   };
 
   changeStart = start => {
-    this.setState({ start: start.toISOString() });
+    this.setState({ start });
   };
 
   changeEnd = end => {
-    this.setState({ end: end.toISOString() });
+    this.setState({ end });
   };
 
   handleSubmit = event => {
     event.preventDefault();
-    this.props.fetch(this.state);
+    const { start, end, name } = this.state;
+    const startString = start && start.toISOString();
+    const endString = end && end.toISOString();
+    this.props.fetch({ name, start: startString, end: endString });
     console.log('this.state', this.state);
   };
 
@@ -84,7 +87,7 @@ class SearchMCSOForm extends PureComponent {
             onChange={this.changeStart}
             showTimeSelect
             // minDate={subDays(new Date(), 7)}
-            maxDate={new Date()}
+            maxDate={end || new Date()}
             placeholderText="Select a date range START within the last 7 days"
             dateFormat="MMMM d, yyyy h:mm aa"
           />
@@ -97,6 +100,7 @@ class SearchMCSOForm extends PureComponent {
             onChange={this.changeEnd}
             showTimeSelect
             maxDate={new Date()}
+            minDate={start}
             dateFormat="MMMM d, yyyy h:mm aa"
             placeholderText="Select a date range END within the last 7 days"
           />
@@ -131,7 +135,11 @@ export class SearchMCSO extends PureComponent {
 
   handleSubmit = (event) => {
     event.preventDefault();
-    console.log('recordsToAdd', this.state);
+    const recordsToAdd = this.state.recordsToAdd.map((swisId) => {
+      return { ...this.props.list.find(record => record.swisId === swisId), org: this.props.org };
+    });
+    this.props.onSubmit(recordsToAdd);
+    console.log('recordsToAdd', recordsToAdd);
   };
 
   render() {
@@ -144,6 +152,7 @@ export class SearchMCSO extends PureComponent {
         <h1>Results</h1>
         <form onSubmit={this.handleSubmit} className={styles.form}>
           <StateRecords list={ this.props.list } onSelection={ this.onSelection } />
+          <br/>
           <button type="submit">Add</button>
         </form>
       </>
