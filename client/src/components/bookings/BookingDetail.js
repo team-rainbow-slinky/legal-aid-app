@@ -91,25 +91,25 @@ export default class BookingDetail extends PureComponent {
 
           <legend>NLG Data</legend>
           <label htmlFor="preferredName">Preferred Name: </label>
-          <input name="preferredName" onChange={this.handleChange} value={preferredName}></input>
+          <input name="preferredName" onChange={this.handleChange} value={preferredName} disabled={editing ? false : true}></input>
 
           <label htmlFor="gender">Gender: </label>
-          <input name="gender" onChange={this.handleChange} value={gender}></input>
+          <input name="gender" onChange={this.handleChange} value={gender} disabled={editing ? false : true}></input>
 
           <label htmlFor="pronouns">Pronouns: </label>
-          <input name="pronouns" onChange={this.handleChange} value={pronouns}></input>
+          <input name="pronouns" onChange={this.handleChange} value={pronouns} disabled={editing ? false : true}></input>
 
           <label htmlFor="contacts">Personal Contacts: </label>
-          <input name="contacts" onChange={this.handleChange} value={contacts}></input>
+          <input name="contacts" onChange={this.handleChange} value={contacts} disabled={editing ? false : true}></input>
 
           <label htmlFor="primaryOrgContact">Primary Contact at NLG: </label>
-          <input name="primaryOrgContact" onChange={this.handleChange} value={primaryOrgContact}></input>
+          <input name="primaryOrgContact" onChange={this.handleChange} value={primaryOrgContact} disabled={editing ? false : true}></input>
 
           <label htmlFor="upcomingDates">Upcoming Dates: </label>
-          <input name="upcomingDates" onChange={this.handleChange} value={upcomingDates}></input>
+          <input name="upcomingDates" onChange={this.handleChange} value={upcomingDates} disabled={editing ? false : true}></input>
 
           <label htmlFor="notes">Notes: </label>
-          <input name="notes" onChange={this.handleChange} value={notes}></input>
+          <input name="notes" onChange={this.handleChange} value={notes} disabled={editing ? false : true}></input>
 
           {editing &&
             <>
