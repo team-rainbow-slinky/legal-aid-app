@@ -78,8 +78,8 @@ describe('org tests', () => {
       .get(`/api/orgs/${org._id}/mcso`)
       .query({ start: queryStart, end: queryEnd })
       .set('Authorization', `Bearer ${tokens.org1User1}`)
-      .then(res => {
-        expect(res.body.length).toEqual(2);
+      .then(results => {
+        expect(results.body.length).toEqual(2);
       });
   });
 
