@@ -1,6 +1,6 @@
 export const org1 = { name: 'National Lawyers Guild' };
-export const org1User1 = { email: 'user1@gmail.com', password: 'password' }
-export const org1User2 = { email: 'user2@gmail.com', password: 'password' }
+export const org1User1 = { email: 'user1@gmail.com', password: 'password' };
+export const org1User2 = { email: 'user2@gmail.com', password: 'password' };
 export const org1Booking1 = {
   swisId: '87809',
   preferredName: 'Boomer Smith',
@@ -22,7 +22,11 @@ export const org1Booking1 = {
   mcsoArrestingAgency: 'Portland Police, Central Precinct',
   mcsoBookingDate: '10/20/2018 6:33 PM',
   mcsoAssignedFacility: 'MCDC',
-  mcsoProjectedReleaseDate: 'Unknown'
+  mcsoProjectedReleaseDate: 'Unknown',
+  chargesHTML: `                  <h3>                <span class="court-case-number">Court Case No. <b>None</b></span>                <span class="da-case-number">DA Case No. <b>None</b></span>                <span class="citation-number">Citation No. <b>None</b></span>            </h3>            <div>                <ol>                        <li>
+      <span class="charge-description-display">DUII (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>
+      <li>                            <span class="charge-description-display">FAIL PERF DOD PROP (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                        <li>                            <span class="charge-description-display">RECKLESS DRIVING (A Misdemeanor)</span>
+      <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                </ol>            </div>    `
 };
 export const org1Booking2 = {
   swisId: '814233',
@@ -45,10 +49,14 @@ export const org1Booking2 = {
   mcsoArrestingAgency: 'Portland Police, Central Precinct',
   mcsoBookingDate: '10/20/2018 6:33 PM',
   mcsoAssignedFacility: 'MCDC',
-  mcsoProjectedReleaseDate: 'Unknown'
+  mcsoProjectedReleaseDate: 'Unknown',
+  chargesHTML: `                  <h3>                <span class="court-case-number">Court Case No. <b>None</b></span>                <span class="da-case-number">DA Case No. <b>None</b></span>                <span class="citation-number">Citation No. <b>None</b></span>            </h3>            <div>                <ol>                        <li>
+      <span class="charge-description-display">DUII (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>
+      <li>                            <span class="charge-description-display">FAIL PERF DOD PROP (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                        <li>                            <span class="charge-description-display">RECKLESS DRIVING (A Misdemeanor)</span>
+      <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                </ol>            </div>    `
 };
 
-export const org2 = { name: 'Legal Observers'};
+export const org2 = { name: 'Legal Observers' };
 export const org2User1 = { email: 'user3@gmail.com', password: 'password' };
 export const org2User2 = { email: 'user4@gmail.com', password: 'password' };
 export const org2Booking1 = {
@@ -72,7 +80,11 @@ export const org2Booking1 = {
   mcsoArrestingAgency: 'Portland Police, Central Precinct',
   mcsoBookingDate: '10/20/2018 6:33 PM',
   mcsoAssignedFacility: 'MCDC',
-  mcsoProjectedReleaseDate: 'Unknown'
+  mcsoProjectedReleaseDate: 'Unknown',
+  chargesHTML: `                  <h3>                <span class="court-case-number">Court Case No. <b>None</b></span>                <span class="da-case-number">DA Case No. <b>None</b></span>                <span class="citation-number">Citation No. <b>None</b></span>            </h3>            <div>                <ol>                        <li>
+      <span class="charge-description-display">DUII (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>
+      <li>                            <span class="charge-description-display">FAIL PERF DOD PROP (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                        <li>                            <span class="charge-description-display">RECKLESS DRIVING (A Misdemeanor)</span>
+      <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                </ol>            </div>    `
 };
 export const org2Booking2 = {
   swisId: '45678',
@@ -95,5 +107,9 @@ export const org2Booking2 = {
   mcsoArrestingAgency: 'Portland Police, Central Precinct',
   mcsoBookingDate: '10/20/2018 6:33 PM',
   mcsoAssignedFacility: 'MCDC',
-  mcsoProjectedReleaseDate: 'Unknown'
+  mcsoProjectedReleaseDate: 'Unknown',
+  chargesHTML: `                  <h3>                <span class="court-case-number">Court Case No. <b>None</b></span>                <span class="da-case-number">DA Case No. <b>None</b></span>                <span class="citation-number">Citation No. <b>None</b></span>            </h3>            <div>                <ol>                        <li>
+      <span class="charge-description-display">DUII (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>
+      <li>                            <span class="charge-description-display">FAIL PERF DOD PROP (A Misdemeanor)</span>                            <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                        <li>                            <span class="charge-description-display">RECKLESS DRIVING (A Misdemeanor)</span>
+      <p class="charge-bail-display">Bail: <span class="charge-bail-value">$0</span></p>                            <p class="charge-status-display">Status: <span class="charge-status-value">Released</span></p>                        </li>                </ol>            </div>    `
 };

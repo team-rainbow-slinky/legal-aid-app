@@ -77,7 +77,7 @@ describe('booking tests', () => {
       .send(updatedBooking)
       .then(res => {
         expect(res.body).toEqual(updatedBooking)
-      })
+      });
   });
 
 });

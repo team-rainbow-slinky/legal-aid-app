@@ -21,32 +21,32 @@ beforeEach(() => {
 
 afterAll(() => {
   return mongoose.disconnect();
-})
+});
 
 beforeEach(() => {
   return Org.create(
     org1,
     org2
-  )
+  );
 });
 
 beforeEach(() => {
   return Org.findOne(org1)
     .then(org => {
       return User.create(
-        { ...org1User1, org: org},
-        { ...org1User2, org: org}
-      )
-    })
+        { ...org1User1, org: org },
+        { ...org1User2, org: org }
+      );
+    });
 });
 
 beforeEach(() => {
   return Org.findOne(org1)
     .then(org => {
       return Booking.create(
-        { ...org1Booking1, org: org},
-        { ...org1Booking2, org: org}
-      )
+        { ...org1Booking1, org: org },
+        { ...org1Booking2, org: org }
+      );
     });
 });
 
@@ -54,9 +54,9 @@ beforeEach(() => {
   return Org.findOne(org2)
     .then(org => {
       return User.create(
-        { ...org2User1, org: org},
-        { ...org2User2, org: org}
-      )
+        { ...org2User1, org: org },
+        { ...org2User2, org: org }
+      );
     });
 });
 
@@ -64,9 +64,9 @@ beforeEach(() => {
   return Org.findOne(org2)
     .then(org => {
       return Booking.create(
-        { ...org2Booking1, org: org},
-        { ...org2Booking2, org: org}
-      )
+        { ...org2Booking1, org: org },
+        { ...org2Booking2, org: org }
+      );
     });
 });
 
@@ -113,8 +113,8 @@ export const setupTestGetters = Model => {
   return [
     (query = {}) => Model.findOne(query).then(prepare),
     (query = {}) => Model.find(query).then(prepareList)
-  ]
-}
+  ];
+};
 
 export const [getOrg, getOrgs] = setupTestGetters(Org);
 export const [getBooking, getBookings] = setupTestGetters(Booking);
