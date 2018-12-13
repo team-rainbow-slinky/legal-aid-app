@@ -4,6 +4,9 @@ const orgSchema = new mongoose.Schema({
   name: {
     type: String,
     required: true
+  },
+  logoUrl: {
+    type: String
   }
 });
 
