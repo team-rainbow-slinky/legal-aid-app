@@ -12,6 +12,6 @@ export const hash = password => hashSync(password, 8);
 
 export const compare = (password, hash) => compareSync(password, hash);
 
-export const tokenize = payload => sign({ payload }, APP_SECRET, { expiresIn: EXPIRE_IN })
+export const tokenize = payload => sign({ payload }, APP_SECRET, { expiresIn: EXPIRE_IN });
 
 export const untokenize = token => verify(token, APP_SECRET).payload;
