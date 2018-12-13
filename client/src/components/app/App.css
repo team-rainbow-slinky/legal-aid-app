@@ -18,6 +18,14 @@ h1 {
   font-size: 6vh;
 }
 
+.detailWrapper {
+    display: flex;
+    justify-content: space-around;
+
+    form {
+        margin:  0em 2em;
+    }
+}
 .form {
   grid-row-start: 2;
   max-width: 500px;
