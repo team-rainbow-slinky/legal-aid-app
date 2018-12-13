@@ -30,10 +30,11 @@ h1 {
     }
     input {
         border-radius: 4px;
-        width: 100%;
+        width: 97%;
         height: 35px;
         border: 1px solid #ccc;
         margin-bottom: 15px;
+        padding-left: 2%;
     }
     textarea {
         width: 100%; 

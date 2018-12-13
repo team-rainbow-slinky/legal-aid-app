@@ -40,6 +40,8 @@ class StateRecord extends PureComponent {
 
 const StateRecords = withList(StateRecord, { spread: true });
 
+
+
 class SearchMCSOForm extends PureComponent {
   state = {
     name: '',
@@ -86,7 +88,6 @@ class SearchMCSOForm extends PureComponent {
             endDate={end}
             onChange={this.changeStart}
             showTimeSelect
-            // minDate={subDays(new Date(), 7)}
             maxDate={end || new Date()}
             placeholderText="Select a date range START within the last 7 days"
             dateFormat="MMMM d, yyyy h:mm aa"
@@ -111,6 +112,8 @@ class SearchMCSOForm extends PureComponent {
     );
   }
 }
+
+
 
 export class SearchMCSO extends PureComponent {
   state = {
@@ -139,7 +142,7 @@ export class SearchMCSO extends PureComponent {
       return { ...this.props.list.find(record => record.swisId === swisId), org: this.props.org };
     });
     this.props.onSubmit(recordsToAdd);
-    console.log('recordsToAdd', recordsToAdd);
+    return this.props.history.push('/');
   };
 
   render() {
@@ -149,12 +152,15 @@ export class SearchMCSO extends PureComponent {
         <Header />
         <h1>Search MCSO Records</h1>
         <SearchMCSOForm fetch={this.props.fetch} />
-        <h1>Results</h1>
-        <form onSubmit={this.handleSubmit} className={styles.form}>
-          <StateRecords list={ this.props.list } onSelection={ this.onSelection } />
-          <br/>
-          <button type="submit">Add</button>
-        </form>
+        {this.props.list.length > 0 &&
+        <div>
+          <h1>Results</h1>
+          <form onSubmit={this.handleSubmit} className={styles.form}>
+            <StateRecords list={ this.props.list } onSelection={ this.onSelection } />
+            <br/>
+            <button type="submit">Add</button>
+          </form>
+        </div>}
       </>
     );
   }
