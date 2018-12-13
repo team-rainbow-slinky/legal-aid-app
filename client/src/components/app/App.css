@@ -18,6 +18,25 @@ h1 {
   font-size: 6vh;
 }
 
+.orgName {
+	font-family: 'Noto Serif TC', serif;
+}
+
+.nav {
+  display: flex;
+  margin-bottom: 6%;
+  justify-content: space-around;
+  background-color: #d9ffb3;
+  a {
+    padding: 1em;
+    text-decoration: none;
+    color: black;
+    &:hover {
+      color: #006600;
+    }
+  }
+}
+
 .detailWrapper {
     display: flex;
     justify-content: space-around;

@@ -2,6 +2,7 @@ import {
   login as loginService,
   verifySession
 } from '../services/auth';
+import { getOrg } from '../services/orgsApi';
 
 export const SESSION_CREATE = 'SESSION_CREATE';
 export const SESSION_LOADING = 'SESSION_LOADING';
@@ -31,9 +32,12 @@ export const updateSessionToken = token => ({
   payload: token
 });
 
+export const FETCH_ORG = 'FETCH_ORG';
+export const fetchOrg = () => ({
+  type: FETCH_ORG,
+  payload: getOrg()
+});
+
 export const logout = () => ({
   type: SESSION_END
 });
-
-
-

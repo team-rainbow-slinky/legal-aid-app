@@ -4,13 +4,16 @@ import { connect } from 'react-redux';
 import { getSession } from '../../selectors/session';
 import { ROUTES } from '../../routes/routes';
 import { logout } from '../../actions/session';
-import styles from './Header.css';
+import { getOrg } from '../../selectors/session';
+import styles from '../../components/app/App.css';
 
-const Header = ({ user, handleLogout }) => {
-  
+const Header = ({ user, org, handleLogout }) => {
+
   //write a function that runs the action we want
   return (
     <header>
+      <h1 className={styles.headText}>Multnomah Legal Aid</h1>
+      <div className={styles.orgName}>{org && org.name}</div>
       <nav className={styles.nav}>
         {user && <NavLink to={ROUTES.ORGHOME.linkTo()}>Home</NavLink>}
         {user && <NavLink to={ROUTES.SEARCHMCSO.linkTo()}>Search MCSO</NavLink>}
@@ -21,7 +24,8 @@ const Header = ({ user, handleLogout }) => {
 };
 
 const mapStateToProps = state => ({
-  user: getSession(state)
+  org: getOrg(state),
+  user: getSession(state),
 });
 
 const mapDispatchToProps = dispatch => ({
