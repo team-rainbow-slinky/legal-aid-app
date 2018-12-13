@@ -92,4 +92,12 @@ export default Router()
     { new: true })
       .then(booking => res.json(booking))
       .catch(next);
+  })
+
+  .delete('/:bookingId', requireAuth, (req, res, next) => {
+    const { bookingId } = req.params;
+    Booking.findByIdAndDelete(bookingId)
+      .then(result => res.json(result))
+      .catch(next);
   });
+  

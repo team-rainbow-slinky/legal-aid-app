@@ -80,4 +80,15 @@ describe('booking tests', () => {
       });
   });
 
+  it('deletes a booking', async () => {
+    const tokens = await getTokens();
+    const bookingToDelete = await getBooking({ swisId: org1Booking1.swisId });
+    return request(app)
+      .delete(`/api/bookings/${bookingToDelete._id}`)
+      .set('Authorization', `Bearer ${tokens.org1User1}`)
+      .then(res => {
+        expect(res.body).toEqual(bookingToDelete);
+      });
+  });
+
 });
