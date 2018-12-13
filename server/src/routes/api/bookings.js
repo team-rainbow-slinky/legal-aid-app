@@ -9,9 +9,9 @@ export default Router()
     const { bookingId } = req.params;
     const query = { _id: bookingId, org: req.user.org };
     Booking.findOne(query)
-    .lean()
-    .then(booking => res.json(booking))
-    .catch(next);
+      .lean()
+      .then(booking => res.json(booking))
+      .catch(next);
   })
 
   .post('/', requireAuth, (req, res, next) => {
@@ -22,7 +22,8 @@ export default Router()
       mcsoName, mcsoAge, mcsoGender, mcsoRace,
       mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
       mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate
+      mcsoAssignedFacility, mcsoProjectedReleaseDate,
+      chargesHTML
     } = req.body;
 
     Booking.create({
@@ -32,10 +33,11 @@ export default Router()
       mcsoName, mcsoAge, mcsoGender, mcsoRace,
       mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
       mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate
+      mcsoAssignedFacility, mcsoProjectedReleaseDate,
+      chargesHTML
     })
       .then((booking => res.json(booking)))
-      .catch(next)
+      .catch(next);
   })
 
   .post('/bulk', requireAuth, (req, res, next) => {
@@ -46,7 +48,8 @@ export default Router()
       mcsoName, mcsoAge, mcsoGender, mcsoRace,
       mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
       mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate
+      mcsoAssignedFacility, mcsoProjectedReleaseDate,
+      chargesHTML
     }) => ({
       swisId, org, preferredName, gender,
       pronouns, primaryOrgContact, contacts,
@@ -54,12 +57,13 @@ export default Router()
       mcsoName, mcsoAge, mcsoGender, mcsoRace,
       mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
       mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate
+      mcsoAssignedFacility, mcsoProjectedReleaseDate,
+      chargesHTML
     }));
 
     Booking.create(bookings)
       .then(bookings => res.json(bookings))
-      .catch(next)
+      .catch(next);
   })
 
   .put('/:bookingId', requireAuth, (req, res, next) => {
@@ -71,7 +75,8 @@ export default Router()
       mcsoName, mcsoAge, mcsoGender, mcsoRace,
       mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
       mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate
+      mcsoAssignedFacility, mcsoProjectedReleaseDate,
+      chargesHTML
     } = req.body;
 
     Booking.findByIdAndUpdate(bookingId, {
@@ -81,9 +86,10 @@ export default Router()
       mcsoName, mcsoAge, mcsoGender, mcsoRace,
       mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
       mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate
+      mcsoAssignedFacility, mcsoProjectedReleaseDate,
+      chargesHTML
     },
     { new: true })
-    .then(booking => res.json(booking))
-    .catch(next)
+      .then(booking => res.json(booking))
+      .catch(next);
   });
