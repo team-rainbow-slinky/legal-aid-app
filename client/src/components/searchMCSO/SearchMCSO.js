@@ -5,7 +5,7 @@ import { withList } from '../withList';
 import styles from '../app/App.css';
 import DatePicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
-import searchStyles from './SearchMCSO.css';
+import './SearchMCSO.css';
 
 class StateRecord extends PureComponent {
   static propTypes = {
