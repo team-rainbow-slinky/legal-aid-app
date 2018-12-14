@@ -8,12 +8,16 @@ import { getOrg } from '../../selectors/session';
 import styles from '../../components/app/App.css';
 
 const Header = ({ user, org, handleLogout }) => {
-
   //write a function that runs the action we want
   return (
     <header>
-      <h1 className={styles.headText}>Multnomah Legal Aid</h1>
-      <div className={styles.orgName}>{org && org.name}</div>
+      <div className={styles.headerWrapper}>
+        <div>
+          <h1 className={styles.headText}>Multnomah Legal Aid</h1>
+          {org && <div className={styles.orgName}>{org.name}</div>}
+        </div>
+        {org && <img className={styles.logoImg} src={org.logoUrl} />}
+      </div>
       <nav className={styles.nav}>
         {user && <NavLink to={ROUTES.ORGHOME.linkTo()}>Home</NavLink>}
         {user && <NavLink to={ROUTES.SEARCHMCSO.linkTo()}>Search MCSO</NavLink>}
