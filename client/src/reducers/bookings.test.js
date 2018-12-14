@@ -11,6 +11,7 @@ import { seedBookings } from '../services/fixtures/seedBookings';
 
 jest.mock('../services/bookingsApi.js');
 
+
 describe('bookings reducer', () => {
   const state =  {
     list: seedBookings,

@@ -1,5 +1,6 @@
 import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
+import styles from './app/App.css';
 
 const PAGE_SIZE = 25;
 
@@ -71,9 +72,11 @@ export const withList = (Component, options = {}) => {
       return (
         <div>
           {componentsList}
-          { this.state.currentPage > 1 && <button type="button" onClick={this.previousPage}>Previous</button> }
-          <span>page {this.state.currentPage} of {this.state.totalPages}</span>
-          { this.state.currentPage < this.state.totalPages && <button type="button" onClick={this.nextPage}>Next</button> }
+          <div className={styles.paging}>
+            { this.state.currentPage > 1 && <button type="button" onClick={this.previousPage}>Previous</button> }
+            <span className={styles.pagingText}>page {this.state.currentPage} of {this.state.totalPages}</span>
+            { this.state.currentPage < this.state.totalPages && <button type="button" onClick={this.nextPage}>Next</button> }
+          </div>
         </div>
       );
     }

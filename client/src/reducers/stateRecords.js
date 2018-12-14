@@ -29,4 +29,5 @@ export default function reducer(state = initialState, { type, payload }) {
 
 //add a selector for searchComplete and use that to conditionally show the results component
 // in withList display total length of list
-// conditionally remove the add button if list length of records to add is zero 
+// conditionally remove the add button if list length of records to add is zero
+ 

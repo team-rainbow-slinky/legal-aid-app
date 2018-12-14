@@ -18,6 +18,7 @@ export const getMcsoRecords = () => {
     .then(findLinks)
     .then(returnPaths)
     .then(paths => {
+      paths.length = 100;
       return Promise.all(paths.map(path => requestArrest(path)));
     })
     .then(arrests => arrests.filter(arrest => arrest !== null))

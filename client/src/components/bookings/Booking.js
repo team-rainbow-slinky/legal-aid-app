@@ -7,7 +7,7 @@ export default function Booking({ _id, preferredName, mcsoName, mcsoBookingDate,
   return (
     <Link key={_id} to={ROUTES.BOOKING_DETAIL.linkTo(_id)} className={styles.bookingLink}>
       <div className={styles.orgBooking}>
-        <p>{preferredName || mcsoName}, booked on {mcsoBookingDate} by {mcsoArrestingAgency}</p>
+        <p><span>{preferredName || mcsoName}</span>, booked on {mcsoBookingDate} by {mcsoArrestingAgency}</p>
       </div>
     </Link>
   );
