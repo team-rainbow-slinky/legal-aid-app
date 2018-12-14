@@ -1,0 +1,39 @@
+* {
+
+}
+
+.crewWrapper {
+  display: flex;
+  justify-content: space-between;
+  width: 80%;
+  margin: 0 auto;
+
+  h3 {
+    text-align: center;
+  }
+
+  img {
+    margin: 0 auto;
+    width: 100%
+  }
+}
+
+.crewItem {
+  margin: 5% 2%;
+}
+
+.linksWrapper {
+  display: flex;
+  justify-content: space-around;
+  width: 100%;
+  margin: auto;
+}
+.socialLogo {
+  width: 20%;
+
+}
+
+/* .bioPic {
+  margin: auto;
+  width: 70%
+} */
