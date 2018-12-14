@@ -14,8 +14,40 @@ h1 {
   font-family: 'Noto Serif TC', serif;
 }
 
+.headerWrapper {
+	display: flex;
+	justify-content: space-between;
+	padding-left: 5%;
+	padding-right: 5%;
+
+	img {
+		margin: auto 2em;
+		height: 10em;
+		width: 10em;
+	}
+}
+
 .headText {
   font-size: 6vh;
+}
+
+.orgName {
+	font-family: 'Noto Serif TC', serif;
+}
+
+.nav {
+  display: flex;
+  margin-bottom: 6%;
+  justify-content: space-around;
+  background-color: #d9ffb3;
+  a {
+    padding: 1em;
+    text-decoration: none;
+    color: black;
+    &:hover {
+      color: #006600;
+    }
+  }
 }
 
 .detailWrapper {
