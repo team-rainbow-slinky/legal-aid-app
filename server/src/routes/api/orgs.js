@@ -5,7 +5,6 @@ import { HttpError } from '../../middleware/error';
 import requireAuth from '../../middleware/requireAuth';
 import confirmOrg from '../../middleware/confirmOrg';
 import { getMcsoRecords } from '../../services/scraper';
-// import moment from 'moment';
 import moment from 'moment-timezone';
 
 export default Router()
@@ -30,8 +29,6 @@ export default Router()
     const { orgId } = req.params;
     const query = { org: orgId };
     const { name, start, end } = req.query;
-
-    console.log('current offset:', moment().utcOffset());
 
     let queryName;
     let queryStart;
@@ -68,18 +65,7 @@ function includesName(name, mcso) {
 function isInTimeFrame(startDate, endDate, mcso) {
   if(!startDate || !endDate) return true;
   if(!mcso) return false;
-  // const mcsoDate = moment.parseZone(mcso + '-08:00', 'MM/DD/YYYY hh:mm A-HH:mm', true);
   const mcsoDate = moment.tz(mcso, 'MM/DD/YYYY hh:mm A', true, 'America/Los_Angeles');
-  // const mcsoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true).utcOffset(-8).utc();
-  const mcsoDate0 = moment(mcso, 'MM/DD/YYYY hh:mm A', true).utcOffset(0).utc();
-  console.log(
-    'rangeStart:', startDate,
-    'rangeEnd:', endDate,
-    'rawMcso:', mcso,
-    'convertedMcso:', mcsoDate,
-    'convertedMcso0:', mcsoDate0,
-    'mcsoDateIsSame:', mcsoDate.isSame(mcsoDate0));
-  console.log('passing?', mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate));
   if(!mcsoDate.isValid() || !startDate.isValid() || !endDate.isValid()) return false;
   if(mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate)) return true;
   return false;
