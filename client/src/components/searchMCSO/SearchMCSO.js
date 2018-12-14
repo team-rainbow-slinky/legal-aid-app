@@ -30,8 +30,7 @@ class StateRecord extends PureComponent {
       <>
         <p>
           <input type="checkbox" className={styles.checkbox} value={this.state.selected} onChange={this.handleSelection}/>
-          <span>{this.props.mcsoName}</span>
-          <span>{this.props.mcsoBookingDate}</span>
+          <span className={styles.bold}>{this.props.mcsoName} -</span> <span>{this.props.mcsoBookingDate}</span>
         </p>
       </>
     );
