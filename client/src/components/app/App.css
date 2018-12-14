@@ -91,7 +91,7 @@ h1 {
     margin-top: 5%;
     text-align: center;
     & > span {
-        padding: 10%;
+        padding: 3% 10%;
     }
     & > button {
         position: relative;
