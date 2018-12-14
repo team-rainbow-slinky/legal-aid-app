@@ -21,7 +21,7 @@ h1 {
 
 .headerWrapper {
 	display: flex;
-	justify-content: space-between;
+	justify-content: center;
     align-items: center;
 	padding-left: 5%;
 	padding-right: 5%;
@@ -32,8 +32,8 @@ h1 {
     }
 	img {
 		margin: 1em 4em;
-		height: 10em;
-		width: 10em;
+
+		width: 12%;
 	}
 }
 
