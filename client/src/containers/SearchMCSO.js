@@ -16,7 +16,7 @@ const mapDispatchToProps = dispatch => ({
   onSubmit(recordsToAdd) {
     const action = addStateRecords(recordsToAdd);
     dispatch(action);
-    return action.payload; //????
+    return action.payload;
   }
 });
 

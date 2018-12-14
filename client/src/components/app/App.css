@@ -223,6 +223,15 @@ h1 {
     padding-left: 41% !important;
 }
 
+footer {
+    background-color: #d9ffb3;
+    height: 5vh;
+    margin-top: 10%;
+    text-align: center;
+    padding-top: 10px;
+    font-size: 12px;
+}
+
 @media screen and (max-width: 450px) {
     .form .checkbox {
         width: 5%;

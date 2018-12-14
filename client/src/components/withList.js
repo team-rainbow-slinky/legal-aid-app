@@ -12,7 +12,7 @@ export const withList = (Component, options = {}) => {
 
     state = {
       currentPage: 1,
-      totalPages: 1
+      totalPages: 10
     };
 
     updateTotalPages = () => {
