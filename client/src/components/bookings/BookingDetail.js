@@ -21,7 +21,7 @@ export default class BookingDetail extends PureComponent {
   };
 
   componentDidUpdate(prevProps) {
-    if(prevProps !== this.props){
+    if(this.props.booking && prevProps !== this.props){
       this.revertState();
     }
   }

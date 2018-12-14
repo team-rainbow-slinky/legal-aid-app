@@ -15,52 +15,14 @@ export default Router()
   })
 
   .post('/', requireAuth, (req, res, next) => {
-    const {
-      swisId, org, preferredName, gender,
-      pronouns, primaryOrgContact, contacts,
-      upcomingDates, meetingHistory, notes,
-      mcsoName, mcsoAge, mcsoGender, mcsoRace,
-      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
-      mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate,
-      chargesHTML
-    } = req.body;
-
-    Booking.create({
-      swisId, org, preferredName, gender,
-      pronouns, primaryOrgContact, contacts,
-      upcomingDates, meetingHistory, notes,
-      mcsoName, mcsoAge, mcsoGender, mcsoRace,
-      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
-      mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate,
-      chargesHTML
-    })
+    const cleanedBooking = cleanBooking(req.body);
+    Booking.create(cleanedBooking)
       .then((booking => res.json(booking)))
       .catch(next);
   })
 
   .post('/bulk', requireAuth, (req, res, next) => {
-    const bookings = req.body.map(({
-      swisId, org, preferredName, gender,
-      pronouns, primaryOrgContact, contacts,
-      upcomingDates, meetingHistory, notes,
-      mcsoName, mcsoAge, mcsoGender, mcsoRace,
-      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
-      mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate,
-      chargesHTML
-    }) => ({
-      swisId, org, preferredName, gender,
-      pronouns, primaryOrgContact, contacts,
-      upcomingDates, meetingHistory, notes,
-      mcsoName, mcsoAge, mcsoGender, mcsoRace,
-      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
-      mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate,
-      chargesHTML
-    }));
-
+    const bookings = req.body.map(cleanBooking);
     Booking.create(bookings)
       .then(bookings => res.json(bookings))
       .catch(next);
@@ -68,28 +30,10 @@ export default Router()
 
   .put('/:bookingId', requireAuth, (req, res, next) => {
     const { bookingId } = req.params;
-    const {
-      swisId, org, preferredName, gender,
-      pronouns, primaryOrgContact, contacts,
-      upcomingDates, meetingHistory, notes,
-      mcsoName, mcsoAge, mcsoGender, mcsoRace,
-      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
-      mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate,
-      chargesHTML
-    } = req.body;
-
-    Booking.findByIdAndUpdate(bookingId, {
-      swisId, org, preferredName, gender,
-      pronouns, primaryOrgContact, contacts,
-      upcomingDates, meetingHistory, notes,
-      mcsoName, mcsoAge, mcsoGender, mcsoRace,
-      mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
-      mcsoArrestingAgency, mcsoBookingDate,
-      mcsoAssignedFacility, mcsoProjectedReleaseDate,
-      chargesHTML
-    },
-    { new: true })
+    const cleanedBooking = cleanBooking(req.body);
+    Booking.findByIdAndUpdate(bookingId,
+      cleanedBooking,
+      { new: true })
       .then(booking => res.json(booking))
       .catch(next);
   })
@@ -102,3 +46,26 @@ export default Router()
       })
       .catch(next);
   });
+
+const cleanBooking = (uncleanBooking) => {
+  const {
+    swisId, org, preferredName, gender,
+    pronouns, primaryOrgContact, contacts,
+    upcomingDates, meetingHistory, notes,
+    mcsoName, mcsoAge, mcsoGender, mcsoRace,
+    mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+    mcsoArrestingAgency, mcsoBookingDate,
+    mcsoAssignedFacility, mcsoProjectedReleaseDate,
+    chargesHTML
+  } = uncleanBooking;
+  return {
+    swisId, org, preferredName, gender,
+    pronouns, primaryOrgContact, contacts,
+    upcomingDates, meetingHistory, notes,
+    mcsoName, mcsoAge, mcsoGender, mcsoRace,
+    mcsoHeight, mcsoWeight, mcsoHair, mcsoEyes,
+    mcsoArrestingAgency, mcsoBookingDate,
+    mcsoAssignedFacility, mcsoProjectedReleaseDate,
+    chargesHTML
+  };
+};

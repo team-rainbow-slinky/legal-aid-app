@@ -9,6 +9,7 @@ import {
 
 jest.mock('../services/auth.js');
 jest.mock('../services/request.js');
+jest.mock('../services/orgsApi.js');
 
 describe('session reducer', () => {
   const state = {
