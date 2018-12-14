@@ -5,6 +5,7 @@ import { withSession } from '../components/auth/withSession';
 import { Login } from '../containers/auth/Auth';
 import BookingDetailContainer from '../containers/BookingDetailContainer';
 import SearchMCSO from '../containers/SearchMCSO';
+import About from '../components/about/About';
 
 
 export const ROUTES = {
@@ -27,6 +28,11 @@ export const ROUTES = {
     path: '/search_mcso',
     Component: withSession(SearchMCSO),
     linkTo: () => '/search_mcso'
+  },
+  ABOUT: {
+    path: '/about',
+    Component: About,
+    linkTo: () => '/about'
   }
 };
 
