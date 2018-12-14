@@ -30,6 +30,8 @@ export default Router()
     const query = { org: orgId };
     const { name, start, end } = req.query;
 
+    console.log('current offset:', moment().utcOffset())
+
     let queryName;
     let queryStart;
     let queryEnd;
