@@ -22,6 +22,7 @@ const Header = ({ user, org, handleLogout }) => {
         {user && <NavLink to={ROUTES.ORGHOME.linkTo()}>Home</NavLink>}
         {user && <NavLink to={ROUTES.SEARCHMCSO.linkTo()}>Search MCSO</NavLink>}
         {user && <NavLink to={ROUTES.LOGIN.linkTo()} onClick={handleLogout}>Logout</NavLink>}
+        {user && <NavLink to={ROUTES.ABOUT.linkTo()}>About Us</NavLink>}
       </nav>
     </header>
   );
@@ -34,7 +35,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleLogout: () => {
-    console.log('LOGOUTTTT');
     dispatch(logout());
   }
 });
