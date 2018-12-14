@@ -37,8 +37,8 @@ export default Router()
     let queryEnd;
 
     if(name) queryName = name.toUpperCase();
-    if(start) queryStart = moment(start, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true);
-    if(end) queryEnd = moment(end, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true);
+    if(start) queryStart = moment(start, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true).utcOffset(0);
+    if(end) queryEnd = moment(end, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true).utcOffset(0);
 
     const promises = [
       Booking.find(query)
