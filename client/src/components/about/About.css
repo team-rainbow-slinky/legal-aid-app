@@ -12,24 +12,42 @@
     text-align: center;
   }
 
-  img {
-    margin: 0 auto;
-    width: 100%
+  .bioPic {
+    margin-left: 27%;
+    margin-right: 20%;
+    width: 10em
   }
+}
+
+.header {
+  margin-top: 0;
+}
+
+.aboutHeading {
+  width: 70%;
+  margin: 0 auto;
 }
 
 .crewItem {
   margin: 5% 2%;
+  width: 30%;
+  padding: 1.5em;
+  background: #F8F8F8;
+
+  &:hover {
+    background-color: #d9ffb3;
+  }
 }
 
 .linksWrapper {
+  
   display: flex;
   justify-content: space-around;
   width: 100%;
   margin: auto;
 }
 .socialLogo {
-  width: 20%;
+  width: 2em;
 
 }
 
