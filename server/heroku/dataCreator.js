@@ -11,10 +11,13 @@ import {
 } from './initialData';
 
 connect ();
-generateData();
+deleteAndGenerateData();
 
 
-async function generateData() {
+async function deleteAndGenerateData() {
+
+  await mongoose.connection.dropDatabase();
+
   let orgs;
   orgs = await Org.create(
     org1,
