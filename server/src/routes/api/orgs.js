@@ -66,6 +66,11 @@ function isInTimeFrame(startDate, endDate, mcso) {
   if(!startDate || !endDate) return true;
   if(!mcso) return false;
   const mcsoDate = moment(mcso + '-08:00', 'MM/DD/YYYY hh:mm A-HH:mm', true);
+  console.log(
+    'rangeStart:', startDate,
+    'rangeEnd:', endDate,
+    'rawMcso:', mcso,
+    'convertedMcso:', mcsoDate);
   if(!mcsoDate.isValid() || !startDate.isValid() || !endDate.isValid()) return false;
   if(mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate)) return true;
   return false;
