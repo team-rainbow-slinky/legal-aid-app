@@ -17,12 +17,17 @@ export const withSession = Component => {
     };
 
     componentDidMount() {
-      if(!this.props.session) this.props.refreshSession();
+
+      if(!this.props.session) {
+        this.props.refreshSession();
+      } else {
+        this.props.fetchOrg();
+      }
     }
 
     componentDidUpdate(prevProps) {
       if(this.props.session !== prevProps.session && !this.props.org) {
-        this.props.fetchOrg()
+        this.props.fetchOrg();
       }
     }
 
