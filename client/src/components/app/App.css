@@ -10,7 +10,7 @@ body {
 
 h1 {
   text-align: center;
-  margin: 5% auto;
+  margin: 5% auto 1% auto;
   font-family: 'Noto Serif TC', serif;
 }
 
@@ -22,10 +22,16 @@ h1 {
 .headerWrapper {
 	display: flex;
 	justify-content: space-between;
+    align-items: center;
 	padding-left: 5%;
 	padding-right: 5%;
+    div {
+        text-align: center;
+        margin-left: 4em;
+        margin-right: 4em;
+    }
 	img {
-		margin: auto 2em;
+		margin: 1em 4em;
 		height: 10em;
 		width: 10em;
 	}
