@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import Header from '../../containers/header/Header';
 import SearchMCSOForm from './SearchMCSOForm';
 import StateRecords from './StateRecordList';
+import Footer from '../footer/Footer';
 import styles from '../app/App.css';
 import 'react-datepicker/dist/react-datepicker-cssmodules.css';
 import './SearchMCSO.css';
@@ -54,6 +55,7 @@ export class SearchMCSO extends PureComponent {
             <button type="submit">Add</button>
           </form>
         </div>}
+        <Footer />
       </>
     );
   }
