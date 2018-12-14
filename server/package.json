@@ -45,6 +45,7 @@
     "express": "^4.16.4",
     "jsonwebtoken": "^8.4.0",
     "moment": "^2.22.2",
+    "moment-timezone": "^0.5.23",
     "mongoose": "^5.3.14",
     "morgan": "^1.9.1",
     "node-html-parser": "^1.1.11"
