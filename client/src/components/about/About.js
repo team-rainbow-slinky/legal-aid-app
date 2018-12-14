@@ -1,6 +1,7 @@
 import React from 'react';
 import styles from './About.css';
 import Header from '../../containers/header/Header';
+import Footer from '../footer/Footer';
 
 export default function About() {
   return (
@@ -41,8 +42,8 @@ export default function About() {
               <a href="https://www.linkedin.com/in/alexcrankin/" className={styles.socialLogo}><img src="https://cdn4.iconfinder.com/data/icons/ionicons/512/icon-social-linkedin-outline-512.png" alt="linked in logo" className={styles.socialLogo}></img></a>
             </div>
           </div>
-
         </div>
+        <Footer/>
       </>
   );
 }
