@@ -34,7 +34,6 @@ const mapStateToProps = state => ({
 
 const mapDispatchToProps = dispatch => ({
   handleLogout: () => {
-    console.log('LOGOUTTTT');
     dispatch(logout());
   }
 });
