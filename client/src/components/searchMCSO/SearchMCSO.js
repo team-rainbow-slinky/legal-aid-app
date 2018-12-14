@@ -72,6 +72,8 @@ class SearchMCSOForm extends PureComponent {
 
   render() {
     const { name, start, end } = this.state;
+    console.log('sdkjdsa', this.props.loading);
+    
     return (
       <>
       <form onSubmit={this.handleSubmit} className={styles.form}>
@@ -106,7 +108,10 @@ class SearchMCSOForm extends PureComponent {
             placeholderText="Select a date range END within the last 7 days"
           />
         </div>
-        <button type="submit">Search</button>
+        {this.props.loading  
+          ? <button type="submit" disabled={true} className={styles.loadingButton}>Loading<span className={styles.loading}></span></button>
+          : <button type="submit" disabled={false}>Search</button>
+        }
       </form>
       </>
     );
@@ -151,8 +156,9 @@ export class SearchMCSO extends PureComponent {
       <>
         <Header />
         <h1>Search MCSO Records</h1>
-        <SearchMCSOForm fetch={this.props.fetch} />
-        {this.props.list.length > 0 &&
+        <SearchMCSOForm fetch={this.props.fetch} loading={this.props.loading}/>
+        {this.props.list.length === 0 && this.props.searchComplete && <p className={styles.searchError}>No results found for your search</p>}
+        {this.props.list.length > 0  && !this.props.loading &&
         <div>
           <h1>Results</h1>
           <form onSubmit={this.handleSubmit} className={styles.form}>
