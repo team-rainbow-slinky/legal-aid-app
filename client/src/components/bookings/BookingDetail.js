@@ -112,7 +112,7 @@ export default class BookingDetail extends PureComponent {
           </form>
 
           <div className={styles.stateData}>
-            <h3>Multnomah County Sheriffs Office Data</h3>
+            <h3>Multnomah County Sheriff&#39;s Office Data</h3>
             <p><span>SwisID: </span> {booking.swisId}</p>
             <p><span>Legal Name: </span> {booking.mcsoName}</p>
             <p><span>Age: </span> {booking.mcsoAge}</p>
