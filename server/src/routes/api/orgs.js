@@ -65,7 +65,8 @@ function includesName(name, mcso) {
 function isInTimeFrame(startDate, endDate, mcso) {
   if(!startDate || !endDate) return true;
   if(!mcso) return false;
-  const mcsoDate = moment(mcso + '-08:00', 'MM/DD/YYYY hh:mm A-HH:mm', true);
+  // const mcsoDate = moment.parseZone(mcso + '-08:00', 'MM/DD/YYYY hh:mm A-HH:mm', true);
+  const mcsoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true).utcOffset(-8);
   console.log(
     'rangeStart:', startDate,
     'rangeEnd:', endDate,
