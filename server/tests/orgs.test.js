@@ -69,18 +69,18 @@ describe('org tests', () => {
       });
   });
 
-  // it('filters bookings from mcso by date of booking', async() => {
-  //   const tokens = await getTokens();
-  //   const org = await getOrg({ name: org1.name });
-  //   const queryStart = '2018-12-10T23:00:00.000Z';
-  //   const queryEnd = '2018-12-11T04:00:00.000Z';
-  //   return request(app)
-  //     .get(`/api/orgs/${org._id}/mcso`)
-  //     .query({ start: queryStart, end: queryEnd })
-  //     .set('Authorization', `Bearer ${tokens.org1User1}`)
-  //     .then(results => {
-  //       expect(results.body.length).toEqual(2);
-  //     });
-  // });
+  it('filters bookings from mcso by date of booking', async() => {
+    const tokens = await getTokens();
+    const org = await getOrg({ name: org1.name });
+    const queryStart = '2018-12-10T23:00:00.000Z';
+    const queryEnd = '2018-12-11T04:00:00.000Z';
+    return request(app)
+      .get(`/api/orgs/${org._id}/mcso`)
+      .query({ start: queryStart, end: queryEnd })
+      .set('Authorization', `Bearer ${tokens.org1User1}`)
+      .then(results => {
+        expect(results.body.length).toEqual(2);
+      });
+  });
 
 });
