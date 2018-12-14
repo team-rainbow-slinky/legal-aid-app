@@ -29,13 +29,13 @@ export default class BookingDetail extends PureComponent {
   revertState = () => {
     const { booking } = this.props;
     this.setState({
-      preferredName: booking.preferredName,
-      gender: booking.gender,
-      pronouns: booking.pronouns,
-      primaryOrgContact: booking.primaryOrgContact,
-      contacts: booking.contacts,
-      upcomingDates: booking.upcomingDates,
-      notes: booking.notes
+      preferredName: booking.preferredName || '',
+      gender: booking.gender || '',
+      pronouns: booking.pronouns || '',
+      primaryOrgContact: booking.primaryOrgContact || '',
+      contacts: booking.contacts || '',
+      upcomingDates: booking.upcomingDates || '',
+      notes: booking.notes || ''
     });
   };
 
@@ -77,7 +77,8 @@ export default class BookingDetail extends PureComponent {
         <Header />
         <div className={styles.detailWrapper}>
           <form className={styles.form} onSubmit={this.handleSubmit}>
-            <legend>NLG Data</legend>
+            <h3>Organization Data</h3>
+            
             <label htmlFor="preferredName">Preferred Name: </label>
             <input name="preferredName" onChange={this.handleChange} value={preferredName} disabled={editing ? false : true}></input>
 
@@ -110,21 +111,21 @@ export default class BookingDetail extends PureComponent {
             }
           </form>
 
-          <div>
-            <h3>MCSO Data</h3>
-            <p>SwisID: {booking.swisId}</p>
-            <p>Legal Name: {booking.mcsoName}</p>
-            <p>Age: {booking.mcsoAge}</p>
-            <p>Gender: {booking.mcsoGender}</p>
-            <p>Race: {booking.mcsoRace}</p>
-            <p>Height: {booking.mcsoHeight}</p>
-            <p>Weight: {booking.mcsoWeight}</p>
-            <p>Hair: {booking.mcsoHair}</p>
-            <p>Eyes: {booking.mcsoEyes}</p>
-            <p>Arresting Agency: {booking.mcsoArrestingAgency}</p>
-            <p>Booking Date: {booking.mcsoBookingDate}</p>
-            <p>Assigned Facility: {booking.mcsoAssignedFacility}</p>
-            <p>Projected Release Date: {booking.mcsoProjectedReleaseDate}</p>
+          <div className={styles.stateData}>
+            <h3>Multnomah County Sheriffs Office Data</h3>
+            <p><span>SwisID: </span> {booking.swisId}</p>
+            <p><span>Legal Name: </span> {booking.mcsoName}</p>
+            <p><span>Age: </span> {booking.mcsoAge}</p>
+            <p><span>State Assigned Gender: </span> {booking.mcsoGender}</p>
+            <p><span>Race: </span> {booking.mcsoRace}</p>
+            <p><span>Height: </span> {booking.mcsoHeight}</p>
+            <p><span>Weight:</span> {booking.mcsoWeight}</p>
+            <p><span>Hair:</span> {booking.mcsoHair}</p>
+            <p><span>Eyes: </span> {booking.mcsoEyes}</p>
+            <p><span>Arresting Agency:</span> {booking.mcsoArrestingAgency}</p>
+            <p><span>Booking Date:</span> {booking.mcsoBookingDate}</p>
+            <p><span>Assigned Facility: </span> {booking.mcsoAssignedFacility}</p>
+            <p><span>Projected Release Date: </span> {booking.mcsoProjectedReleaseDate}</p>
             <p dangerouslySetInnerHTML={{ __html: booking.chargesHTML }}></p>
           </div>
         </div>
