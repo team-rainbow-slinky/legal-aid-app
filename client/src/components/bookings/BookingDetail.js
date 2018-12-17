@@ -2,6 +2,7 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import styles from '../app/App.css';
 import Header from '../../containers/header/Header';
+import Footer from '../footer/Footer';
 
 export default class BookingDetail extends PureComponent {
   static propTypes = {
@@ -129,6 +130,7 @@ export default class BookingDetail extends PureComponent {
             <p dangerouslySetInnerHTML={{ __html: booking.chargesHTML }}></p>
           </div>
         </div>
+        <Footer />
       </>
     );
   }
