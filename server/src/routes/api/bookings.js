@@ -15,14 +15,14 @@ export default Router()
   })
 
   .post('/', requireAuth, (req, res, next) => {
-    const cleanedBooking = cleanBooking(req.body);
+    const cleanedBooking = cleanBooking(req.body, req.user.org);
     Booking.create(cleanedBooking)
       .then((booking => res.json(booking)))
       .catch(next);
   })
 
   .post('/bulk', requireAuth, (req, res, next) => {
-    const bookings = req.body.map(cleanBooking);
+    const bookings = req.body.map(booking => cleanBooking(booking, req.user.org));
     Booking.create(bookings)
       .then(bookings => res.json(bookings))
       .catch(next);
@@ -30,7 +30,7 @@ export default Router()
 
   .put('/:bookingId', requireAuth, (req, res, next) => {
     const { bookingId } = req.params;
-    const cleanedBooking = cleanBooking(req.body);
+    const cleanedBooking = cleanBooking(req.body, req.user.org);
     Booking.findByIdAndUpdate(bookingId,
       cleanedBooking,
       { new: true })
@@ -47,9 +47,9 @@ export default Router()
       .catch(next);
   });
 
-const cleanBooking = (uncleanBooking) => {
+const cleanBooking = (uncleanBooking, org) => {
   const {
-    swisId, org, preferredName, gender,
+    swisId, preferredName, gender,
     pronouns, primaryOrgContact, contacts,
     upcomingDates, meetingHistory, notes,
     mcsoName, mcsoAge, mcsoGender, mcsoRace,

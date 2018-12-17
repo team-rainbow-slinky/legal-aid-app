@@ -27,7 +27,7 @@ const bookingSchema = new mongoose.Schema ({
   mcsoHair: String,
   mcsoEyes: String,
   mcsoArrestingAgency: String,
-  mcsoBookingDate: String,  // or maybe date?
+  mcsoBookingDate: String,  
   mcsoAssignedFacility: String,
   mcsoProjectedReleaseDate: String,
   chargesHTML: String

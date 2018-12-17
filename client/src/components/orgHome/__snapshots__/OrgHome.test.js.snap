@@ -1,0 +1,12 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`OrgHome component renders the org home and displays bookings 1`] = `
+<Fragment>
+  <Connect(Header) />
+  <h1>
+    Organization Records
+  </h1>
+  <Connect(WithFetch) />
+  <Footer />
+</Fragment>
+`;
