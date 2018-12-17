@@ -2,7 +2,7 @@ import store from '../store';
 import { updateSessionToken } from '../actions/session';
 import { getSessionToken } from '../selectors/session';
 
-let token = window.localStorage.getItem('token'); //may or may not be okay
+let token = window.localStorage.getItem('token');
 
 const setToken = newToken => {
   token = newToken;

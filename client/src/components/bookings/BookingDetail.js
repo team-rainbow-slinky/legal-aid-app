@@ -79,7 +79,7 @@ export default class BookingDetail extends PureComponent {
         <div className={styles.detailWrapper}>
           <form className={styles.form} onSubmit={this.handleSubmit}>
             <h3>Organization Data</h3>
-            
+
             <label htmlFor="preferredName">Preferred Name: </label>
             <input name="preferredName" onChange={this.handleChange} value={preferredName} disabled={editing ? false : true}></input>
 
