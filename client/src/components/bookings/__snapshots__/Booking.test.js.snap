@@ -1,0 +1,19 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`Booking component renders a booking 1`] = `
+<Link
+  className="bookingLink"
+  replace={false}
+  to="/bookings/undefined"
+>
+  <div
+    className="orgBooking"
+  >
+    <p>
+      <span />
+      , booked on 
+       by 
+    </p>
+  </div>
+</Link>
+`;

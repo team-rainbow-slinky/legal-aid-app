@@ -16,7 +16,6 @@ export const getBookings = () => {
 
 export const getBooking = id => {
   return Promise.resolve(seedBookings.find(booking => booking._id === id));
-  // return get(`/api/bookings/${id}`);
 };
 
 export const updateBooking = booking => {

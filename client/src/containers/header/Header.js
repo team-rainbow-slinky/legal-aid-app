@@ -8,7 +8,6 @@ import { getOrg } from '../../selectors/session';
 import styles from '../../components/app/App.css';
 
 const Header = ({ user, org, handleLogout }) => {
-  //write a function that runs the action we want
   return (
     <header>
       <div className={styles.headerWrapper}>
