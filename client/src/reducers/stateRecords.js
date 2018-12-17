@@ -22,12 +22,7 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, error: payload };
     case FETCH_STATE_RECORDS:
       return { ...state, list: payload };
-    default: 
+    default:
       return state;
   }
 }
-
-//add a selector for searchComplete and use that to conditionally show the results component
-// in withList display total length of list
-// conditionally remove the add button if list length of records to add is zero
- 
