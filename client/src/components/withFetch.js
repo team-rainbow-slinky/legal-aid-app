@@ -14,9 +14,6 @@ export const withFetch = (Component, options = {}) => {
     componentDidMount() {
       const promise = this.props.fetch();
       if(!promise || typeof promise.then !== 'function') return;
-
-      promise
-        .then(data => this.setState({ data }));
     }
 
     render() {

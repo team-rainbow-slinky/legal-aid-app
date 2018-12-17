@@ -23,7 +23,6 @@ export class AuthForm extends PureComponent {
 
   handleSubmit = event => {
     event.preventDefault();
-    console.log(this.state);
     const { email, password } = this.state;
     this.props.onSubmit({ email, password });
   };
@@ -36,6 +35,7 @@ export class AuthForm extends PureComponent {
 
     return (
       <>
+        <h1 className={styles.headText}>Multnomah Legal Aid</h1>
         {error && <p className={styles.error}>{error.error}</p>}
         <form onSubmit={this.handleSubmit} className={genStyles.form}>
           <p>
@@ -46,7 +46,7 @@ export class AuthForm extends PureComponent {
             <label>Password:</label>
             <input type="password" name="password" value={password} onChange={this.handleChange} />
           </p>
-          
+
           <button>Sign In</button>
         </form>
       </>
