@@ -6,9 +6,11 @@ export default function App() {
   return (
     <Router>
       <>
-      <Switch>
-        {routerRoutes()}
-      </Switch>
+        <Header />
+        <Switch>
+          {routerRoutes()}
+        </Switch>
+        <Footer />
       </>
     </Router>
   );
