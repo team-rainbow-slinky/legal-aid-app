@@ -12,7 +12,6 @@ export default (req, res, next) => {
     return next(new HttpError({ code: 401, message: 'Invalid blank token' }));
   }
 
-
   try {
     User.findByToken(token)
       .then(user => {

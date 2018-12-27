@@ -54,7 +54,4 @@ describe('bookings reducer', () => {
     expect(newState.error).toEqual('error');
   });
 
-  // it('handles a BOOKING_EDIT action', () => {
-
-  // });
 });
