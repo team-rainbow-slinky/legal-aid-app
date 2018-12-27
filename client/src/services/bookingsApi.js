@@ -1,7 +1,7 @@
 import { seedBookings } from '../services/fixtures/seedBookings';
 import store from '../store';
 import { getOrgId } from '../selectors/session';
-import { get, put } from './request';
+import { get, put, remove } from './request';
 
 export const getBookings = () => {
   const orgId = getOrgId(store.getState());
@@ -21,4 +21,9 @@ export const getBooking = id => {
 export const updateBooking = booking => {
   const id = booking._id;
   return put(`/api/bookings/${id}`, booking);
+};
+
+export const removeBooking = booking => {
+  const id = booking._id;
+  return remove(`/api/bookings/${id}`, booking);
 };
