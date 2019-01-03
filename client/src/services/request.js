@@ -11,7 +11,6 @@ const setToken = newToken => {
 };
 
 store.subscribe(() => {
-  console.log('hi');
   const storeToken = getSessionToken(store.getState());
   if(!storeToken && window.localStorage.getItem('token')) setToken(window.localStorage.getItem('token'));
 });
