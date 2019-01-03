@@ -2,7 +2,7 @@ import store from '../store';
 import { updateSessionToken } from '../actions/session';
 import { getSessionToken } from '../selectors/session';
 
-let token = window.localStorage.getItem('token');
+let token = null;
 
 const setToken = newToken => {
   token = newToken;
@@ -11,10 +11,9 @@ const setToken = newToken => {
 };
 
 store.subscribe(() => {
+  console.log('hi');
   const storeToken = getSessionToken(store.getState());
-  if(storeToken !== token) {
-    token = window.localStorage.getItem('token');
-  }
+  if(!storeToken && window.localStorage.getItem('token')) setToken(window.localStorage.getItem('token'));
 });
 
 const request = (url, method, body) => {
