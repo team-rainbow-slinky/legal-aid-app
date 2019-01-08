@@ -12,5 +12,3 @@ export const getStateRecords = (query) => {
 export const addRecords = (recordsToAdd) => {
   return post('/api/bookings/bulk', recordsToAdd);
 };
-
-//action, selector, reducer to get state records and then call this function, and then we can plug it in to search to display with connect

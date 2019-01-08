@@ -11,6 +11,7 @@ import { seedBookings } from '../services/fixtures/seedBookings';
 
 jest.mock('../services/bookingsApi.js');
 
+
 describe('bookings reducer', () => {
   const state =  {
     list: seedBookings,
@@ -53,7 +54,4 @@ describe('bookings reducer', () => {
     expect(newState.error).toEqual('error');
   });
 
-  // it('handles a BOOKING_EDIT action', () => {
-
-  // });
 });

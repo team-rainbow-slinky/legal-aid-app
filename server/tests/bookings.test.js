@@ -1,7 +1,7 @@
 import request from 'supertest';
 import app from '../src/routes/app';
-import { org1, org1Booking1, org1Booking2 } from './testData';
-import { getTokens, getBooking } from './testHelper';
+import { org1User1, org1Booking1, org1Booking2 } from './testData';
+import { getTokens, getBooking, getUser } from './testHelper';
 
 describe('booking tests', () => {
 
@@ -13,7 +13,7 @@ describe('booking tests', () => {
       .set('Authorization', `Bearer ${tokens.org1User1}`)
       .then(res => {
         expect(res.body).toEqual({ ...booking })
-      })
+      });
   });
 
   it('returns null if you are not an authorized user of that booking\'s org', async () => {
@@ -27,10 +27,12 @@ describe('booking tests', () => {
       });
   });
 
-  it('creates a new booking', async () => {
+  it('creates a new booking with the user\'s org', async () => {
     const tokens = await getTokens();
     const newBooking = await getBooking({ swisId: org1Booking1.swisId });
+    const user = await getUser({ email: org1User1.email });
     newBooking.swisId = '99955';
+    newBooking.org = user.org;
     return request(app)
       .post('/api/bookings')
       .set('Authorization', `Bearer ${tokens.org1User1}`)
@@ -39,8 +41,8 @@ describe('booking tests', () => {
         expect(res.body).toEqual({
           ...newBooking,
           _id: expect.any(String)
-        })
-      })
+        });
+      });
   });
 
   it('creates multiple new bookings', async () => {
@@ -63,7 +65,7 @@ describe('booking tests', () => {
           ...newBooking2,
           _id: expect.any(String)
         });
-      })
+      });
   });
 
   it('updates a booking', async () => {

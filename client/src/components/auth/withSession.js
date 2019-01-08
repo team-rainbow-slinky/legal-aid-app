@@ -3,19 +3,32 @@ import PropTypes from 'prop-types';
 import { connect } from 'react-redux';
 import { Redirect } from 'react-router-dom';
 import { ROUTES } from '../../routes/routes';
-import { getSession, getSessionLoading } from '../../selectors/session';
-import { refreshSession } from '../../actions/session';
+import { getSession, getSessionLoading, getOrg } from '../../selectors/session';
+import { refreshSession, fetchOrg } from '../../actions/session';
 
 export const withSession = Component => {
-  
+
   class WithSessionComponent extends PureComponent {
     static propTypes = {
       loading: PropTypes.bool.isRequired,
-      session: PropTypes.object
+      session: PropTypes.object,
+      refreshSession: PropTypes.func.isRequired,
+      fetchOrg: PropTypes.func.isRequired,
+      token: PropTypes.object
     };
 
     componentDidMount() {
-      if(!this.props.session) this.props.refreshSession();
+      if(!this.props.session && this.props.token) {
+        this.props.refreshSession();
+      } else if(this.props.session) {
+        this.props.fetchOrg();
+      }
+    }
+
+    componentDidUpdate(prevProps) {
+      if(this.props.session !== prevProps.session && !this.props.org) {
+        this.props.fetchOrg();
+      }
     }
 
     render() {
@@ -29,8 +42,15 @@ export const withSession = Component => {
   return connect(
     state => ({
       session: getSession(state),
+      org: getOrg(state),
       loading: getSessionLoading(state)
     }),
-    dispatch => ({ refreshSession: () => dispatch(refreshSession()) })
+    dispatch => ({
+      refreshSession: () => {
+        dispatch(refreshSession());
+      },
+      fetchOrg: () => dispatch(fetchOrg())
+    })
+
   )(WithSessionComponent);
 };

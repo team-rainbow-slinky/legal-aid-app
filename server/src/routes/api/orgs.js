@@ -5,7 +5,7 @@ import { HttpError } from '../../middleware/error';
 import requireAuth from '../../middleware/requireAuth';
 import confirmOrg from '../../middleware/confirmOrg';
 import { getMcsoRecords } from '../../services/scraper';
-import moment from 'moment';
+import moment from 'moment-timezone';
 
 export default Router()
   .get('/:orgId', requireAuth, confirmOrg, (req, res, next) => {
@@ -35,8 +35,8 @@ export default Router()
     let queryEnd;
 
     if(name) queryName = name.toUpperCase();
-    if(start) queryStart = moment(start, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true);
-    if(end) queryEnd = moment(end, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true);
+    if(start) queryStart = moment(start, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true).utcOffset(0);
+    if(end) queryEnd = moment(end, 'YYYY-MM-DDTHH:mm:ss.SSSZ', true).utcOffset(0);
 
     const promises = [
       Booking.find(query)
@@ -65,7 +65,7 @@ function includesName(name, mcso) {
 function isInTimeFrame(startDate, endDate, mcso) {
   if(!startDate || !endDate) return true;
   if(!mcso) return false;
-  const mcsoDate = moment(mcso, 'MM/DD/YYYY hh:mm A', true);
+  const mcsoDate = moment.tz(mcso, 'MM/DD/YYYY hh:mm A', true, 'America/Los_Angeles');
   if(!mcsoDate.isValid() || !startDate.isValid() || !endDate.isValid()) return false;
   if(mcsoDate.isSameOrAfter(startDate) && mcsoDate.isSameOrBefore(endDate)) return true;
   return false;

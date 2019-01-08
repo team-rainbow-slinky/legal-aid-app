@@ -4,15 +4,15 @@ import {
   SESSION_LOADED,
   SESSION_ERROR,
   SESSION_TOKEN,
-  SESSION_END
+  SESSION_END,
+  FETCH_ORG
 } from '../actions/session';
-
-//GET THE ORG IN HERE TO PERSIST WITH THE USER THROUGH THEIR SESSION?
 
 const initialState = {
   token: '',
   user: null,
-  loading: true,
+  org: null,
+  loading: false,
   error: null
 };
 
@@ -24,13 +24,15 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, loading: true };
     case SESSION_LOADED:
       return { ...state, loading: false };
-    case SESSION_ERROR: 
+    case SESSION_ERROR:
       return { ...state, user: null, error: payload };
     case SESSION_TOKEN:
       return { ...state, token: payload };
     case SESSION_END:
-      window.localStorage.removeItem('token');  
-      return { ...initialState }; 
+      window.localStorage.removeItem('token');
+      return { ...initialState };
+    case FETCH_ORG:
+      return { ...state, org: payload };
     default:
       return state;
   }
