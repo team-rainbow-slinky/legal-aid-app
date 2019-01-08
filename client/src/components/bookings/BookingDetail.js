@@ -3,10 +3,12 @@ import PropTypes from 'prop-types';
 import styles from '../app/App.css';
 import Header from '../../containers/header/Header';
 import Footer from '../footer/Footer';
+import { ROUTES } from '../../routes/routes';
 
 export default class BookingDetail extends PureComponent {
   static propTypes = {
     editBooking: PropTypes.func,
+    deleteBooking: PropTypes.func,
     booking: PropTypes.object
   };
 
@@ -46,6 +48,13 @@ export default class BookingDetail extends PureComponent {
 
   handleEdit = () => {
     this.setState({ editing: true });
+  };
+
+  handleDelete = () => {
+    return this.props.deleteBooking({ ...this.props.booking, ...this.state })
+      .then(() => {
+        return this.props.history.push('/');
+      });
   };
 
   handleCancel = () => {
@@ -110,6 +119,7 @@ export default class BookingDetail extends PureComponent {
             {!editing &&
               <button onClick={this.handleEdit}>Edit Booking</button>
             }
+            <button onClick={this.handleDelete}>Delete Booking</button>
           </form>
 
           <div className={styles.stateData}>

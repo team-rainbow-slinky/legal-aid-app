@@ -25,5 +25,8 @@ export const updateBooking = booking => {
 
 export const removeBooking = booking => {
   const id = booking._id;
-  return remove(`/api/bookings/${id}`, booking);
+  return remove(`/api/bookings/${id}`, booking)
+    .then(() => {
+      return getBookings();
+    });
 };
