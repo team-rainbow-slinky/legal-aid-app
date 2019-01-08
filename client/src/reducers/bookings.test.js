@@ -5,7 +5,8 @@ import {
   FETCH_BOOKING,
   BOOKING_LOADING,
   BOOKING_LOADED,
-  BOOKING_ERROR
+  BOOKING_ERROR,
+  BOOKING_DELETE
 } from '../actions/bookings';
 import { seedBookings } from '../services/fixtures/seedBookings';
 
@@ -37,6 +38,13 @@ describe('bookings reducer', () => {
       payload: { hi: 'hi' }
     });
     expect(newState).toEqual({ ...state, detail: { hi: 'hi' } });
+  });
+
+  it('handles a BOOKING_DELETE action', () => {
+    const newState  = reducer(state, {
+      type: BOOKING_DELETE,
+      payload: { hi: 'hi' }
+    })
   });
 
   it('handles a BOOKING_LOADING action', () => {

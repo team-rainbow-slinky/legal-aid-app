@@ -4,7 +4,8 @@ import {
   FETCH_BOOKING,
   BOOKING_LOADING,
   BOOKING_LOADED,
-  BOOKING_ERROR
+  BOOKING_ERROR,
+  BOOKING_DELETE
 } from '../actions/bookings';
 
 const initialState = {
