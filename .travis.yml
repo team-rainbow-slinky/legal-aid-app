@@ -1,10 +1,10 @@
 language: node_js
 node_js:
-  - "node"
+- node
 services:
-  - mongodb
+- mongodb
 env:
-  - MONGODB_URI=mongodb://localhost:27017/legal-aid-test
+- MONGODB_URI=mongodb://localhost:27017/legal-aid-test
 deploy:
   provider: heroku
   app:
