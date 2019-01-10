@@ -13,13 +13,14 @@ export const withSession = Component => {
       loading: PropTypes.bool.isRequired,
       session: PropTypes.object,
       refreshSession: PropTypes.func.isRequired,
-      fetchOrg: PropTypes.func.isRequired
+      fetchOrg: PropTypes.func.isRequired,
+      token: PropTypes.object
     };
 
     componentDidMount() {
-      if(!this.props.session) {
+      if(!this.props.session && this.props.token) {
         this.props.refreshSession();
-      } else {
+      } else if(this.props.session) {
         this.props.fetchOrg();
       }
     }

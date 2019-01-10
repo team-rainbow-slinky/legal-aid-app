@@ -1,15 +1,15 @@
 language: node_js
 node_js:
-  - "node"
+- node
 services:
-  - mongodb
+- mongodb
 env:
-  - MONGODB_URI=mongodb://localhost:27017/legal-aid-test
+- MONGODB_URI=mongodb://localhost:27017/legal-aid-test
 deploy:
   provider: heroku
   app:
     master: multnomah-legal-aid
     dev: multnomah-legal-aid-dev
-    demo: mutlnomah-legal-aid-demo
+    demo: multnomah-legal-aid-demo
   api_key:
     secure: e3EkZ5HCGrgXODy6bfSoVl3QfAR/ctgGYsVmj9DF/+pLOjCKwmzOz6hLwSTlk5DTKqlAwtoutMHr3reVNHypkBhsPta6Ihdoh+huLnjozjAUHuOUG4UmDAWmh/vu7aDy6DUUSeKgl5EpgCKF5fIuzdhrwY8s13H+UzxmBEI6asxwqQ4YLA6Tfgm25bnlBS32K9+SVq7RQUAMsHP/ayna1ka1NY9iWxfFxLFiuWHzBiFIJKXUl1Cht32IhK4hRBxL69cLlSP/gwQX6CRigFtAcRastFo1+duw902QOajzEJcL+nGDQe+5EfGnNHICzMz/KLJFb3kCXxp8++0capr8zBXd2/1ptVbeBw44y9hyKQSP1lSPGdNjFXthfBo9AuffCQHkX2wXU2QJzh8Loh2R86eD01JWdF6nLlWNvfTmIzmZkGYDAHe5rsuKRYk42ENIXf3URVjPCBahAoYcv2MoB7RBiZb1euS69DHVog6u3e6YKFcTZ4M1kiCywF0zaVcFlF84mYN4w4OVLfwYYyFxrNJKmjevsGN4zZI5A/KOKrk7L+ifyNzkKqsars4GVYBNtuW7LllBNcs8VvUj5dlKc8wpYSEp2a0a1o+XAoXYzwL9fVANm5/wJmCJrp1FIe279Rn7mi+Ljvcsg79uzqXiaCdu2Lqk1m0uVTxTZDYHmew=
