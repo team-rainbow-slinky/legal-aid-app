@@ -5,7 +5,7 @@ import Header from '../../containers/header/Header';
 import Footer from '../footer/Footer';
 import ReactModal from 'react-modal';
 
-ReactModal.setAppElement('#root');
+if(process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#root');
 
 export default class BookingDetail extends PureComponent {
   static propTypes = {
