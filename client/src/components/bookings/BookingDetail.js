@@ -3,7 +3,6 @@ import PropTypes from 'prop-types';
 import styles from '../app/App.css';
 import Header from '../../containers/header/Header';
 import Footer from '../footer/Footer';
-import { ROUTES } from '../../routes/routes';
 import ReactModal from 'react-modal';
 
 ReactModal.setAppElement('#root');
@@ -91,8 +90,7 @@ export default class BookingDetail extends PureComponent {
       primaryOrgContact,
       contacts,
       upcomingDates,
-      notes,
-      showModal
+      notes
     } = this.state;
 
     return (

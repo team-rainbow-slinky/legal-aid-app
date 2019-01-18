@@ -12,7 +12,7 @@ const initialState = {
   token: '',
   user: null,
   org: null,
-  loading: false,
+  loading: true,
   error: null
 };
 
