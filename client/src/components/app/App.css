@@ -111,6 +111,7 @@ h1 {
         margin-bottom: 10px;
         transition: border .4s ease-out;
         border: 3px solid transparent;
+        &
         &:hover {
             border: 3px solid #006600;
         }
@@ -122,6 +123,50 @@ h1 {
             -o-outline: 5px auto #d9ffb3;
         }
     }
+}
+
+.deleteConfirm {
+    width: 60vw;
+    background-color: white;
+    border: 1px solid black;
+    padding: 2%;
+    text-align: center;
+    position: relative;
+    top: 25vh;
+    left: 20vw;
+    right: auto;
+    bottom: auto;
+    transform: 'translate(-50%, -50%)';
+    & > button {
+        position: relative;
+        padding: 20px;
+        color: black;
+        margin-right: 1vw;
+        margin-left: 1vw;
+        background: #d9ffb3;
+        font-size: 14px;
+        text-align: center;
+        font-style: normal;
+        width: 40%;
+        margin-bottom: 10px;
+        margin-top: 15px;
+        transition: border .4s ease-out;
+        border: 3px solid transparent;
+        
+        &:hover {
+            border: 3px solid #006600;
+        }
+        &:focus {
+            outline: 5px auto #d9ffb3;
+            -webkit-outline: 5px auto #d9ffb3;
+            -moz-outline: 5px auto #d9ffb3;
+            -ms-outline: 5px auto #d9ffb3;
+            -o-outline: 5px auto #d9ffb3;
+        }
+    }
+    /* &:last-child {
+        padding: 5px;
+    } */
 }
 
 .formDiv {

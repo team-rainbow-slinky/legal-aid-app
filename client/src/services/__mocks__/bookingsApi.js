@@ -13,3 +13,7 @@ export const getBooking = id => {
 export const updateBooking = booking => {
   return Promise.resolve(booking);
 };
+
+export const removeBooking = booking => {
+  return Promise.resolve(booking);
+};

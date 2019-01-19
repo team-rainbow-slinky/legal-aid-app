@@ -1,4 +1,9 @@
-import { editBooking, BOOKING_EDIT, fetchBookings, FETCH_BOOKINGS, fetchBooking, FETCH_BOOKING } from './bookings';
+import {
+  editBooking, BOOKING_EDIT,
+  fetchBookings, FETCH_BOOKINGS,
+  fetchBooking, FETCH_BOOKING,
+  deleteBooking, BOOKING_DELETE
+} from './bookings';
 
 const fakeBooking = {
   swisId: '67890',
@@ -40,5 +45,10 @@ describe('bookings actions', () => {
   it('creates an action to update a booking', () => {
     const booking = editBooking(fakeBooking);
     expect(booking.type).toEqual(BOOKING_EDIT);
+  });
+
+  it('creates an action to delete a booking', () => {
+    const action = deleteBooking(fakeBooking);
+    expect(action.type).toEqual(BOOKING_DELETE);
   });
 });

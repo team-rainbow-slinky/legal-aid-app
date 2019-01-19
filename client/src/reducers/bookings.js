@@ -4,7 +4,8 @@ import {
   FETCH_BOOKING,
   BOOKING_LOADING,
   BOOKING_LOADED,
-  BOOKING_ERROR
+  BOOKING_ERROR,
+  BOOKING_DELETE
 } from '../actions/bookings';
 
 const initialState = {
@@ -27,6 +28,8 @@ export default function reducer(state = initialState, { type, payload }) {
       return { ...state, detail: payload };
     case BOOKING_EDIT:
       return { ...state, list: { ...state.list, [payload._id]: payload } };
+    case BOOKING_DELETE:
+      return { ...state, list: payload };
     default: return state;
   }
 }
