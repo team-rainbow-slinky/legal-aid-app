@@ -1,6 +1,6 @@
 import { Router } from 'express';
-import { HttpError } from '../../middleware/error';
 import mongoose from 'mongoose';
+import generateInitialData from '../../../heroku/dataCreator';
 
 export default Router()
   .get('/', (req, res) => {
@@ -8,12 +8,16 @@ export default Router()
     res.json(mode);
   })
 
-  .get('/dropAll', (req, res) => {
+  .get('/resetData', (req, res, next) => {
     const mode = process.env.MODE;
     if(mode.toUpperCase() === 'DEMO') {
+
       mongoose.connection.dropDatabase();
-      res.json({ drop: true });
+      generateInitialData()
+        .then(() => res.json({ resetData: true }))
+        .catch(next);
+
     } else {
-      res.json({ drop: false });
+      res.json({ resetData: false });
     }
   });
