@@ -3,10 +3,14 @@ import PropTypes from 'prop-types';
 import styles from '../app/App.css';
 import Header from '../../containers/header/Header';
 import Footer from '../footer/Footer';
+import ReactModal from 'react-modal';
+
+if(process.env.NODE_ENV !== 'test') ReactModal.setAppElement('#root');
 
 export default class BookingDetail extends PureComponent {
   static propTypes = {
     editBooking: PropTypes.func,
+    deleteBooking: PropTypes.func,
     booking: PropTypes.object
   };
 
@@ -19,6 +23,7 @@ export default class BookingDetail extends PureComponent {
     contacts: '',
     upcomingDates: '',
     notes: '',
+    showModal: false
   };
 
   componentDidUpdate(prevProps) {
@@ -40,12 +45,27 @@ export default class BookingDetail extends PureComponent {
     });
   };
 
+  showModal = () => {
+    this.setState({ showModal: true });
+  };
+
+  hideModal = () => {
+    this.setState({ showModal: false });
+  };
+
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
   };
 
   handleEdit = () => {
     this.setState({ editing: true });
+  };
+
+  handleDelete = () => {  
+    return this.props.deleteBooking({ ...this.props.booking, ...this.state })
+      .then(() => {
+        return this.props.history.push('/');
+      });
   };
 
   handleCancel = () => {
@@ -105,8 +125,14 @@ export default class BookingDetail extends PureComponent {
               <>
                 <button type="reset" onClick={this.handleCancel}>Cancel</button>
                 <button type="submit">Save Changes</button>
+                <button onClick={this.showModal}>Delete Booking</button>
               </>
-            }
+            }     
+            <ReactModal className={styles.deleteConfirm} isOpen={this.state.showModal} contentLabel='Confirm delete alert'>
+              <p>Are you sure you want to delete this booking? This action can not be undone.</p>
+              <button onClick={this.hideModal}>Cancel</button>
+              <button onClick={this.handleDelete}>Yes, delete this booking</button>
+            </ReactModal>
             {!editing &&
               <button onClick={this.handleEdit}>Edit Booking</button>
             }

@@ -1,4 +1,9 @@
-import { getBookings, getBooking, updateBooking } from '../services/bookingsApi';
+import {
+  getBookings,
+  getBooking,
+  updateBooking,
+  removeBooking
+} from '../services/bookingsApi';
 
 
 export const BOOKING_LOADING = 'BOOKING_LOADING';
@@ -25,4 +30,10 @@ export const BOOKING_EDIT = 'BOOKING_EDIT';
 export const editBooking = booking => ({
   type: BOOKING_EDIT,
   payload: updateBooking(booking)
+});
+
+export const BOOKING_DELETE = 'BOOKING_DELETE';
+export const deleteBooking = booking => ({
+  type: BOOKING_DELETE,
+  payload: removeBooking(booking)
 });
