@@ -9,33 +9,33 @@ describe('app routes', () => {
       .then(org => {
         return request(app)
           .post('/api/users/signup')
-          .send({ ...org1User1, org: org._id})
+          .send({ ...org1User1, org: org._id })
           .then(res => {
             expect(res.body).toEqual({
               _id: expect.any(String),
               email: org1User1.email,
               org: org._id
-             });
-             expect(res.get('X-AUTH-TOKEN')).toEqual(expect.any(String))
-          })
+            });
+            expect(res.get('X-AUTH-TOKEN')).toEqual(expect.any(String));
+          });;
       });
   });
 
-  it('signs in a user', async () => {
+  it('signs in a user', async() => {
     return request(app)
       .post('/api/users/login')
-      .send({ email: org1User1.email, password: org1User1.password})
+      .send({ email: org1User1.email, password: org1User1.password })
       .then(res => {
         expect(res.body).toEqual({
           _id: expect.any(String),
           email: org1User1.email,
           org: expect.any(String)
         });
-        expect(res.get('X-AUTH-TOKEN')).toEqual(expect.any(String))
+        expect(res.get('X-AUTH-TOKEN')).toEqual(expect.any(String));
       });
   });
 
-  it('fails to sign in a user with a bad password', async () => {
+  it('fails to sign in a user with a bad password', async() => {
     return request(app)
       .post('/api/users/login')
       .send({ email: org1User1.email, password: '1234567' })
@@ -44,14 +44,14 @@ describe('app routes', () => {
       });
   });
 
-  it('can verify a user', async () => {
+  it('can verify a user', async() => {
     const tokens = await getTokens();
     const user = await getUser({ email: org1User1.email });
     return request(app)
       .get('/api/users/verify')
       .set('Authorization', `Bearer ${tokens.org1User1}`)
       .then(res => {
-        expect(res.body).toEqual({ ...user })
-      })
+        expect(res.body).toEqual({ ...user });
+      });
   });
 });
