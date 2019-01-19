@@ -12,7 +12,7 @@ describe('booking tests', () => {
       .get(`/api/bookings/${booking._id}`)
       .set('Authorization', `Bearer ${tokens.org1User1}`)
       .then(res => {
-        expect(res.body).toEqual({ ...booking })
+        expect(res.body).toEqual({ ...booking });
       });
   });
 
@@ -27,7 +27,7 @@ describe('booking tests', () => {
       });
   });
 
-  it('creates a new booking with the user\'s org', async () => {
+  it('creates a new booking with the user\'s org', async() => {
     const tokens = await getTokens();
     const newBooking = await getBooking({ swisId: org1Booking1.swisId });
     const user = await getUser({ email: org1User1.email });
