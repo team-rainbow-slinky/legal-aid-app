@@ -17,7 +17,7 @@ describe('app routes', () => {
               org: org._id
             });
             expect(res.get('X-AUTH-TOKEN')).toEqual(expect.any(String));
-          });;
+          });
       });
   });
 
