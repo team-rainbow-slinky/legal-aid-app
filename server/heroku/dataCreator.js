@@ -1,8 +1,3 @@
-import { config } from 'dotenv';
-config();
-
-import mongoose from 'mongoose';
-import { connect } from '../src/utils/connect';
 import Org from '../src/models/Org';
 import User from '../src/models/User';
 import {
@@ -10,13 +5,7 @@ import {
   org2, org2User1, org2User2
 } from './initialData';
 
-connect ();
-deleteAndGenerateData();
-
-
-async function deleteAndGenerateData() {
-
-  await mongoose.connection.dropDatabase();
+export default async function generateInitialData() {
 
   let orgs;
   orgs = await Org.create(
@@ -31,5 +20,5 @@ async function deleteAndGenerateData() {
     { ...org2User1, org: orgs[1] },
     { ...org2User2, org: orgs[1] }
   );
-  return await mongoose.disconnect();
+
 }
