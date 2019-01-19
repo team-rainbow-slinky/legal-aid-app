@@ -1,5 +1,6 @@
 import { Router } from 'express';
 import { HttpError } from '../../middleware/error';
+import mongoose from 'mongoose';
 
 export default Router()
   .get('/', (req, res) => {
@@ -7,7 +8,12 @@ export default Router()
     res.json(mode);
   })
 
-  .get('/drop', (req, res) => {
-
-    res.json({ drop: true });
+  .get('/dropAll', (req, res) => {
+    const mode = process.env.MODE;
+    if(mode.toUpperCase() === 'DEMO') {
+      mongoose.connection.dropDatabase();
+      res.json({ drop: true });
+    } else {
+      res.json({ drop: false });
+    }
   });
