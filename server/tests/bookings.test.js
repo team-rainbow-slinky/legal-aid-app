@@ -5,18 +5,18 @@ import { getTokens, getBooking, getUser } from './testHelper';
 
 describe('booking tests', () => {
 
-  it('gets a booking by id if you are an authorized user of that booking\'s org', async () => {
+  it('gets a booking by id if you are an authorized user of that booking\'s org', async() => {
     const tokens = await getTokens();
     const booking = await getBooking({ swisId: org1Booking1.swisId });
     return request(app)
       .get(`/api/bookings/${booking._id}`)
       .set('Authorization', `Bearer ${tokens.org1User1}`)
       .then(res => {
-        expect(res.body).toEqual({ ...booking })
+        expect(res.body).toEqual({ ...booking });
       });
   });
 
-  it('returns null if you are not an authorized user of that booking\'s org', async () => {
+  it('returns null if you are not an authorized user of that booking\'s org', async() => {
     const tokens = await getTokens();
     const booking = await getBooking({ swisId: org1Booking1.swisId });
     return request(app)
@@ -27,7 +27,7 @@ describe('booking tests', () => {
       });
   });
 
-  it('creates a new booking with the user\'s org', async () => {
+  it('creates a new booking with the user\'s org', async() => {
     const tokens = await getTokens();
     const newBooking = await getBooking({ swisId: org1Booking1.swisId });
     const user = await getUser({ email: org1User1.email });
@@ -45,7 +45,7 @@ describe('booking tests', () => {
       });
   });
 
-  it('creates multiple new bookings', async () => {
+  it('creates multiple new bookings', async() => {
     const tokens = await getTokens();
     const newBooking1 = await getBooking({ swisId: org1Booking1.swisId });
     const newBooking2 = await getBooking({ swisId: org1Booking2.swisId });
@@ -68,7 +68,7 @@ describe('booking tests', () => {
       });
   });
 
-  it('updates a booking', async () => {
+  it('updates a booking', async() => {
     const tokens = await getTokens();
     const updatedBooking = await getBooking({ swisId: org1Booking1.swisId });
     updatedBooking.gender = 'a new gender';
@@ -78,11 +78,11 @@ describe('booking tests', () => {
       .set('Authorization', `Bearer ${tokens.org1User1}`)
       .send(updatedBooking)
       .then(res => {
-        expect(res.body).toEqual(updatedBooking)
+        expect(res.body).toEqual(updatedBooking);
       });
   });
 
-  it('deletes a booking', async () => {
+  it('deletes a booking', async() => {
     const tokens = await getTokens();
     const bookingToDelete = await getBooking({ swisId: org1Booking1.swisId });
     return request(app)
