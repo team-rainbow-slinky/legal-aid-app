@@ -1,5 +1,5 @@
-import Org from '../src/models/Org';
-import User from '../src/models/User';
+import Org from '../models/Org';
+import User from '../models/User';
 import {
   org1, org1User1, org1User2,
   org2, org2User1, org2User2
