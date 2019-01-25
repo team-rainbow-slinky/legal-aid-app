@@ -1,6 +1,6 @@
 import mongoose from 'mongoose';
 import { config } from 'dotenv';
-import { connect } from '../src/utils/connect';
+import { connect } from '../utils/connect';
 import generateInitialData from './dataCreator';
 config();
 connect ();

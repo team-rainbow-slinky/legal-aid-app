@@ -1,6 +1,6 @@
 import { Router } from 'express';
 import mongoose from 'mongoose';
-import generateInitialData from '../../../heroku/dataCreator';
+import generateInitialData from '../../heroku/dataCreator';
 
 export default Router()
   .get('/', (req, res) => {
