@@ -39,6 +39,7 @@ export default Router()
   })
 
   .delete('/:bookingId', requireAuth, (req, res, next) => {
+    // Make sure the org owns the booking you're about to delete
     const { bookingId } = req.params;
     Booking.findByIdAndDelete(bookingId)
       .then(deletedBooking => {

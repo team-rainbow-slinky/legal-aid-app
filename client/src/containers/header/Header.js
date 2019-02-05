@@ -8,6 +8,8 @@ import { getOrg } from '../../selectors/session';
 import styles from '../../components/app/App.css';
 
 const Header = ({ user, org, handleLogout }) => {
+  // Don't show header if no user is logged in
+  if (!user) return null;
   return (
     <header>
       <div className={styles.headerWrapper}>

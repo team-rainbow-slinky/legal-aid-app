@@ -14,10 +14,10 @@ export class SearchMCSO extends PureComponent {
 
   onSelection = selection => {
     const { selected, swisId } = selection;
-    
-    if(selected) {
+
+    if (selected) {
       const recordsToAdd = [...this.state.recordsToAdd];
-      if(!recordsToAdd.includes(swisId)) recordsToAdd.push(swisId);
+      if (!recordsToAdd.includes(swisId)) recordsToAdd.push(swisId);
       this.setState({ recordsToAdd });
     }
     else {
@@ -42,24 +42,19 @@ export class SearchMCSO extends PureComponent {
   render() {
     return (
       <>
-        <Header />
         <h1>Search MCSO Records</h1>
-        <SearchMCSOForm fetch={this.props.fetch} loading={this.props.loading}/>
+        <SearchMCSOForm fetch={this.props.fetch} loading={this.props.loading} />
         {this.props.list.length === 0 && this.props.searchComplete && <p className={styles.searchError}>No results found for your search</p>}
-        {this.props.list.length > 0  && !this.props.loading &&
-        <div>
-          <h1>Results</h1>
-          <form onSubmit={this.handleSubmit} className={styles.form}>
-            <StateRecords list={ this.props.list } onSelection={ this.onSelection } />
-            <br/>
-            <button type="submit">Add</button>
-          </form>
-        </div>}
-        <Footer />
+        {this.props.list.length > 0 && !this.props.loading &&
+          <div>
+            <h1>Results</h1>
+            <form onSubmit={this.handleSubmit} className={styles.form}>
+              <StateRecords list={this.props.list} onSelection={this.onSelection} />
+              <br />
+              <button type="submit">Add</button>
+            </form>
+          </div>}
       </>
     );
   }
 }
-
-
-

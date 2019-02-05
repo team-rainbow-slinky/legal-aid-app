@@ -1,7 +1,12 @@
 const request = require('superagent');
 const { parse } = require('node-html-parser');
 
-export const getMcsoRecords = () => {
+const getLinkId = path => {
+  const pathParts = path.split('/');
+  return pathParts[pathParts.length - 1];
+}
+
+export const getMcsoRecords = (linkIds = []) => {
 
   return request.post('http://www.mcso.us/PAID/Home/SearchResults')
     .timeout({
@@ -10,13 +15,16 @@ export const getMcsoRecords = () => {
     })
     .type('form')
     .send(
-      { FirstName: '',
+      {
+        FirstName: '',
         LastName: '',
-        SearchType: 3 })
+        SearchType: 3
+      })
     .then(res => res.text)
     .then(parse)
     .then(findLinks)
     .then(returnPaths)
+    .then(filterPaths(linkIds))
     .then(paths => {
       return Promise.all(paths.map(path => requestArrest(path)));
     })
@@ -34,6 +42,10 @@ const findLinks = html => {
 const returnPaths = paths => {
   return paths.map(path => path.rawAttrs.replace('href="', '').replace('"', ''));
 };
+
+// Filter out bookings that we already have before
+// scraping the arrest page
+const filterPaths = linkIds => paths => paths.filter(path => !linkIds.includes(getLinkId(path)));
 
 const arrestPageValueAt = (html, row) => {
   return html.querySelectorAll('#booking-detail table tr')[row].childNodes[3].text;
@@ -61,5 +73,6 @@ const requestArrest = path => {
     .then(res => res.text)
     .then(parse)
     .then(parseArrestPage)
+    .then(arrest => ({ ...arrest, linkId: getLinkId(path) }))
     .catch(() => null);
 };

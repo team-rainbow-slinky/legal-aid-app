@@ -27,7 +27,7 @@ export default class BookingDetail extends PureComponent {
   };
 
   componentDidUpdate(prevProps) {
-    if(this.props.booking && prevProps !== this.props){
+    if (this.props.booking && prevProps !== this.props) {
       this.revertState();
     }
   }
@@ -81,7 +81,7 @@ export default class BookingDetail extends PureComponent {
 
   render() {
     const { booking } = this.props;
-    if(!booking) return null;
+    if (!booking) return null;
     const {
       editing,
       preferredName,
@@ -95,7 +95,6 @@ export default class BookingDetail extends PureComponent {
 
     return (
       <>
-        <Header />
         <div className={styles.detailWrapper}>
           <form className={styles.form} onSubmit={this.handleSubmit}>
             <h3>Organization Data</h3>
@@ -156,7 +155,6 @@ export default class BookingDetail extends PureComponent {
             <p dangerouslySetInnerHTML={{ __html: booking.chargesHTML }}></p>
           </div>
         </div>
-        <Footer />
       </>
     );
   }

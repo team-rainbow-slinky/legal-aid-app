@@ -1,7 +1,11 @@
 import mongoose from 'mongoose';
 
-const bookingSchema = new mongoose.Schema ({
+const bookingSchema = new mongoose.Schema({
   swisId: {
+    type: String,
+    required: true
+  },
+  linkId: {
     type: String,
     required: true
   },
@@ -27,7 +31,7 @@ const bookingSchema = new mongoose.Schema ({
   mcsoHair: String,
   mcsoEyes: String,
   mcsoArrestingAgency: String,
-  mcsoBookingDate: String,  
+  mcsoBookingDate: String,
   mcsoAssignedFacility: String,
   mcsoProjectedReleaseDate: String,
   chargesHTML: String
