@@ -8,7 +8,9 @@ import styles from './Auth.css';
 export class AuthForm extends PureComponent {
   static propTypes = {
     onSubmit: PropTypes.func.isRequired,
-    sessions: PropTypes.object,
+    fetchMode: PropTypes.func.isRequired,
+    session: PropTypes.object,
+    mode: PropTypes.string,
     error: PropTypes.object
   };
 
@@ -16,6 +18,19 @@ export class AuthForm extends PureComponent {
     email: '',
     password: ''
   };
+
+  componentDidMount() {
+    this.props.fetchMode()
+      .then(() => {
+        if(this.props.mode === 'demo') {
+          this.setState({
+            email: 'demo email',
+            password: 'demo password'
+          });
+        }
+      });
+
+  }
 
   handleChange = ({ target }) => {
     this.setState({ [target.name]: target.value });
